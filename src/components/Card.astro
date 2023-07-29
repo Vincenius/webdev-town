@@ -1,0 +1,86 @@
+---
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+	image: string;
+}
+import { Image } from 'astro:assets';
+
+const { href, title, body, image } = Astro.props;
+const imgSrc = image.replace('/weekly', '../assets')
+const imageImport = await import(/* @vite-ignore */imgSrc)
+let domain = (new URL(href))
+
+---
+
+<li class="link-card">
+	<a href={href}>
+		<Image
+			src={imageImport.default}
+			alt={title}
+			width={300}
+			height={166}
+			class="image"
+		/>
+		<div class="content">
+			<h3>
+				{title}
+				<span>&rarr;</span>
+			</h3>
+			<p>
+				{body}
+			</p>
+			<p>
+				{domain.hostname}
+			</p>
+		</div>
+	</a>
+</li>
+<style>
+	.link-card {
+		list-style: none;
+		display: flex;
+		padding: 1px;
+		background-color: #23262d;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 7px;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+		width: 300px;
+		overflow: hidden;
+	}
+	.link-card > a {
+		width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		border-radius: 8px;
+		color: white;
+		background-color: #23262d;
+		opacity: 0.8;
+	}
+	.content {
+		padding: calc(1.5rem - 1px);
+	}
+	h3 {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.image {
+		object-fit: cover;
+	}
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+	.link-card:is(:hover, :focus-within) {
+		background-position: 0;
+		background-image: var(--accent-gradient);
+	}
+	.link-card:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent-light));
+	}
+</style>
