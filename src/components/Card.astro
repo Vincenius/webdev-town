@@ -6,18 +6,19 @@ interface Props {
 	image: string;
 }
 import { Image } from 'astro:assets';
+const images = import.meta.glob('../assets/content/**/*')
 
 const { href, title, body, image } = Astro.props;
-const imgSrc = image.replace('/weekly', '../assets')
-const imageImport = await import(/* @vite-ignore */imgSrc)
 let domain = (new URL(href))
+let imagePath = image.replace('/weekly', '../assets'); // todo update database
+const myImage = await images[imagePath]();
 
 ---
 
 <li class="link-card">
 	<a href={href}>
 		<Image
-			src={imageImport.default}
+			src={myImage.default}
 			alt={title}
 			width={300}
 			height={166}
