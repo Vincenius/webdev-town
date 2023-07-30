@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import Pagination from '../components/Pagination.astro';
+import { getByQuery } from '../utils/database';
+
+---
+
+<Layout title="WebDev Town | Search all resources.">
+	<!-- todo search icon in input <input type="text" class="search" placeholder="Search"></input> -->
+
+  <!-- <ul role="list" class="link-card-grid">
+		{page.data
+			.map(elem => <Card
+				href={elem.link}
+				title={elem.title}
+				body={elem.description}
+				image={elem.image}
+			/>)}
+	</ul> -->
+</Layout>
+
+<style>
+	h2 {
+		margin-bottom: 0;
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+		padding: 0;
+	}
+	.search {
+		height: 2.625rem;
+    line-height: calc(2.5rem);
+    appearance: none;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 1rem;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    display: block;
+    text-align: left;
+    border: 0.0625rem solid rgb(206, 212, 218);
+    background-color: rgb(255, 255, 255);
+    transition: border-color 100ms ease 0s;
+    min-height: 2.625rem;
+    padding-left: calc(0.875rem);
+    padding-right: calc(0.875rem);
+    border-radius: 0.25rem;
+	}
+</style>

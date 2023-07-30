@@ -11,12 +11,14 @@ const images = import.meta.glob('../assets/content/**/*')
 const { href, title, body, image } = Astro.props;
 let domain = (new URL(href))
 let imagePath = image.replace('/weekly', '../assets'); // todo update database
-const myImage = await images[imagePath]();
+const myImage = images[imagePath]
+	? await images[imagePath]()
+	: { default: 'no-image' };
 
 ---
 
 <li class="link-card">
-	<a href={href}>
+	<a href={href} target="_blank" rel="noopener noreferrer" draggable="false">
 		<Image
 			src={myImage.default}
 			alt={title}
@@ -25,14 +27,16 @@ const myImage = await images[imagePath]();
 			class="image"
 		/>
 		<div class="content">
-			<h3>
-				{title}
-				<span>&rarr;</span>
-			</h3>
-			<p>
-				{body}
-			</p>
-			<p>
+			<div>
+				<h3>
+					{title}
+					<span>&rarr;</span>
+				</h3>
+				<p>
+					{body}
+				</p>
+			</div>
+			<p class="host">
 				{domain.hostname}
 			</p>
 		</div>
@@ -40,18 +44,18 @@ const myImage = await images[imagePath]();
 </li>
 <style>
 	.link-card {
+		position: relative;
+		z-index: 1;
 		list-style: none;
 		display: flex;
 		padding: 1px;
 		background-color: #23262d;
 		background-image: none;
 		background-size: 400%;
-		border-radius: 7px;
+		border-radius: var(--border-radius);
 		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+		box-shadow: var(--box-shadow);
 		width: 300px;
-		overflow: hidden;
 	}
 	.link-card > a {
 		width: 100%;
@@ -60,10 +64,14 @@ const myImage = await images[imagePath]();
 		border-radius: 8px;
 		color: white;
 		background-color: #23262d;
-		opacity: 0.8;
 	}
 	.content {
 		padding: calc(1.5rem - 1px);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: calc(100% - 166px);
+		box-sizing: border-box;
 	}
 	h3 {
 		margin: 0;
@@ -72,16 +80,24 @@ const myImage = await images[imagePath]();
 	}
 	.image {
 		object-fit: cover;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
 	}
 	p {
 		margin-top: 0.5rem;
 		margin-bottom: 0;
 	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
+	.link-card:hover::after {
+		content: "";
+		position: absolute;
+		inset: -5px; /* control the spread */
+		z-index: -1; /* place the element behind */
+		background: var(--accent-gradient);/* your gradient here */;
+		filter: blur(10px); /* control the blur */
 	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent-light));
+	.host {
+		margin: 1em 0 0;
+		opacity: 0.5;
+		font-size: 0.75em;
 	}
 </style>

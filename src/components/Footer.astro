@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.svg'
+---
+
+<footer>
+  <span class="logo-container">
+    <Image class="logo" src={logo} width={40} alt="circuit board house logo"/>
+    <span>WebDev Town</span>
+  </span>
+  <div class="links">
+    <!-- <a href="/about">About</a>
+    <a href="/sponsorship">Sponsorship</a> -->
+    <a href="/privacy">Privacy Policy</a>
+  </div>
+</footer>
+<style>
+  footer {
+    margin-top: 1em;
+    padding: 1em 0;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    margin-right: 1em;
+  }
+  .links a {
+    text-decoration: none;
+    display: block;
+    color: #fff;
+    font-size: 0.8em;
+  }
+  .links a:hover {
+    opacity: 0.6;
+  }
+</style>

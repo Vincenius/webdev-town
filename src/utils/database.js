@@ -15,7 +15,7 @@ export const getByQuery = async query => {
     const db = dbClient.db('weekly')
     const collection = db.collection('weekly')
 
-    result = await collection.find(query).toArray()
+    result = await collection.find(query).sort({ created_at: -1 }).toArray()
   } catch (e) {
     console.log('error', e)
   }
@@ -25,3 +25,20 @@ export const getByQuery = async query => {
   return result
 }
 
+export const getCount = async () => {
+  let result = 0
+  const dbClient = await connectDb()
+
+  try {
+    const db = dbClient.db('weekly')
+    const collection = db.collection('weekly')
+
+    result = await collection.countDocuments()
+  } catch (e) {
+    console.log('error', e)
+  }
+
+  await dbClient.close()
+
+  return result
+}
