@@ -14,7 +14,6 @@ let imagePath = image.replace('/weekly', '../assets'); // todo update database
 const myImage = images[imagePath]
 	? await images[imagePath]()
 	: { default: 'no-image' };
-
 ---
 
 <li class="link-card">
