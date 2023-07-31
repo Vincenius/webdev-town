@@ -1,13 +1,16 @@
 import fs from 'fs';
-import { simpleGit } from 'simple-git'
+import { simpleGit, CleanOptions } from 'simple-git'
+
+const git = simpleGit().clean(CleanOptions.FORCE);
 
 const handler = async (req, res) => {
+  await git.pull();
+
   fs.writeFileSync('../frontend/testy2.json', `[]`);
 
-  await simpleGit()
-    .add('./*')
-    .commit('testing automatic commits!')
-    .push('origin', 'main');
+  await simpleGit().add('.')
+  await simpleGit().commit('testing automatic commits!')
+  await simpleGit().push('origin', 'main');
 
   res.status(200).json({  })
 }
