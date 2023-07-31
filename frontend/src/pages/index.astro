@@ -20,7 +20,7 @@ const todayData = data.filter(elem => new Date().toISOString().substring(0,10) =
 
 	<Newsletter />
 
-	{todayData.length && <>
+	{todayData.length > 0 ? <>
 		<h3>Today</h3>
 		<ul role="list" class="link-card-grid">
 			{ todayData.map(elem => <Card
@@ -30,7 +30,7 @@ const todayData = data.filter(elem => new Date().toISOString().substring(0,10) =
 				image={elem.image}
 			/>)}
 		</ul>
-	</>}
+	</> : <></>}
 
 	<h3>Last 7 Days</h3>
 	<ul role="list" class="link-card-grid">
