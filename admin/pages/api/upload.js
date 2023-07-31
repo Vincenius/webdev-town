@@ -5,7 +5,7 @@ const handler = async (req, res) => {
   fs.writeFileSync('../frontend/testy.json', `[]`);
 
   simpleGit()
-    .add('./*')
+    .add('.')
     .commit('testing automatic commits!')
     .push('origin', 'main');
 
