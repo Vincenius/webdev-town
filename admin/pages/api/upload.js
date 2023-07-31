@@ -2,9 +2,9 @@ import fs from 'fs';
 import { simpleGit } from 'simple-git'
 
 const handler = async (req, res) => {
-  fs.writeFileSync('../frontend/testy.json', `[]`);
+  fs.writeFileSync('../frontend/testy2.json', `[]`);
 
-  simpleGit()
+  await simpleGit()
     .add('.')
     .commit('testing automatic commits!')
     .push('origin', 'main');
