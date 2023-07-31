@@ -1,0 +1,26 @@
+{
+  "name": "webdev-town-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@mantine/core": "^6.0.17",
+    "@mantine/dropzone": "^6.0.17",
+    "@mantine/hooks": "^6.0.17",
+    "@mantine/next": "^6.0.17",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "next": "13.4.12",
+    "open-graph-scraper": "^6.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "simple-git": "^3.19.1"
+  }
+}

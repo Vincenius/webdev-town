@@ -1,0 +1,8 @@
+.main {
+  min-height: 100vh;
+  color: #fff;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2em;
+}
