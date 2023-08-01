@@ -39,5 +39,5 @@ jobs:
             --function-name webdev-town-api \
             --runtime nodejs18.x \
             --handler index.handler \
-            --role arn:aws:lambda:eu-central-1:658680537871:function:webdev-town-api \
+            --role arn:aws:iam::658680537871:role/service-role/webdev-town-api-role-0l5swt3e \
             --zip-file fileb://lambda_function.zip
