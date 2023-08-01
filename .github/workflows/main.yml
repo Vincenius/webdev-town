@@ -1,0 +1,43 @@
+name: Deploy Lambda Function
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: eu-central-1   # Change this to your desired AWS region
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region $AWS_REGION
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install awscli
+
+      - name: Deploy Lambda Function
+        run: |
+          # Zip the contents of the ./lambda directory
+          cd ./lambda
+          zip -r lambda_function.zip ./*
+
+          # Deploy the Lambda function
+          aws lambda create-function \
+            --function-name webdev-town-api \
+            --runtime nodejs18.x \
+            --handler index.handler \
+            --role arn:aws:iam::658680537871:user/github-action-webdev-town \
+            --zip-file fileb://lambda_function.zip
