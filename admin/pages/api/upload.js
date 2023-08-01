@@ -1,18 +1,27 @@
-import fs from 'fs';
-import { simpleGit, CleanOptions } from 'simple-git'
+const multer = require('multer');
 
-const git = simpleGit().clean(CleanOptions.FORCE);
+export const config = {
+  api: {
+    bodyParser: false,
+  }
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, './tmp'); // 'uploads' is the folder where files will be stored
+  },
+  filename: function (req, file, cb) {
+      // Save the file with its original name
+      cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
 
 const handler = async (req, res) => {
-  // await git.pull();
-
-  // fs.writeFileSync('../frontend/testy2.json', `[]`);
-
-  // await simpleGit().add('../frontend/testy2.json');
-  // await simpleGit().commit('testing automatic commits!')
-  // await simpleGit().push('origin', 'main');
-
-  res.status(200).json({  })
+  await upload.single("file")(req, res, err => {
+    res.status(200).json({ path: './tmp/' + req.file.filename })
+  })
 }
 
 export default handler

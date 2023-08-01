@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Title, TextInput, Flex, Button, Image, FileInput } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import styles from './AdminPage.module.css'
 
 const AdminPage = () => {
+  const [weekly, setWeekly] = useLocalStorage({ key: 'webdev-town-weekly', defaultValue: '' });
   const [url, setUrl] = useState('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -16,6 +18,31 @@ const AdminPage = () => {
     setImage(preview)
   }
 
+  const submit = async () => {
+    setLoading(true)
+    let imagePath = image
+    if (uploadImage) {
+      const formData = new FormData();
+      formData.append('file', uploadImage);
+      const storedFile = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      }).then(res => res.json())
+      imagePath = storedFile.path
+    }
+    const { result } = await fetch('/api/submit', {
+      method: 'POST',
+      body: JSON.stringify({
+        weekly,
+        url,
+        title,
+        description,
+        image: imagePath,
+      })
+    }).then(res => res.json())
+    console.log(result)
+    setLoading(false)
+  }
 
   const fetchMeta = async () => {
     setLoading(true)
@@ -32,7 +59,14 @@ const AdminPage = () => {
   return <main className={styles.main}>
     <Title order={1}>Admin Page</Title>
 
-    {/* webdev weekly (legacy) */}
+    <TextInput
+      placeholder="wwebdev weekly (legacy)"
+      label="weekly"
+      withAsterisk
+      value={weekly}
+      onChange={(event) => setWeekly(event.currentTarget.value)}
+      mb="md"
+    />
 
     <Flex align="flex-end" mb="md">
       <TextInput
@@ -75,7 +109,7 @@ const AdminPage = () => {
 
     {/* date -> next seven days with number of resources for that day */}
 
-    {/* create button */}
+    <Button onClick={() => submit()} loading={loading}>Submit</Button>
 
     {/* later generate twitter message */}
   </main>
