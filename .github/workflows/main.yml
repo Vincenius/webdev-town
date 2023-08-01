@@ -35,16 +35,16 @@ jobs:
           zip -r lambda_function.zip ./*
 
           # Check if the Lambda function exists
-          FUNCTION_NAME="MyLambdaFunction"
+          FUNCTION_NAME="webdev-town-api"
           FUNCTION_EXISTS=$(aws lambda list-functions --query "Functions[?FunctionName==\`${FUNCTION_NAME}\`]" --output json)
 
           if [ -z "${FUNCTION_EXISTS}" ]; then
             # If the function does not exist, create it
             aws lambda create-function \
               --function-name $FUNCTION_NAME \
-              --runtime nodejs14.x \
+              --runtime nodejs18.x \
               --handler index.handler \
-              --role arn:aws:iam::YOUR_ACCOUNT_ID:role/YourLambdaRole \
+              --role arn:aws:iam::658680537871:role/service-role/webdev-town-api-role-0l5swt3e \
               --zip-file fileb://lambda_function.zip
           else
             # If the function exists, update the function code
