@@ -28,6 +28,11 @@ jobs:
           sudo apt-get install -y python3-pip
           pip3 install awscli
 
+      - name: Install Node.js dependencies
+        run: |
+          cd ./lambda
+          npm install
+
       - name: Deploy Lambda Function
         run: |
           # Zip the contents of the ./lambda directory
