@@ -54,7 +54,9 @@ const myImage = images[imagePath]
 		border-radius: var(--border-radius);
 		background-position: 100%;
 		box-shadow: var(--box-shadow);
-		width: 300px;
+		width: 100%;
+		max-width: 300px;
+		container-type: inline-size;
 	}
 	.link-card > a {
 		width: 100%;
@@ -74,13 +76,16 @@ const myImage = images[imagePath]
 	}
 	h3 {
 		margin: 0;
-		font-size: 1.25rem;
+		font-size: 1.15em;
 		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 	.image {
 		object-fit: cover;
 		border-top-left-radius: 8px;
 		border-top-right-radius: 8px;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
 	}
 	p {
 		margin-top: 0.5rem;
@@ -98,5 +103,11 @@ const myImage = images[imagePath]
 		margin: 1em 0 0;
 		opacity: 0.5;
 		font-size: 0.75em;
+	}
+
+	@container (max-width: 250px) {
+		.content {
+			font-size: 0.75em;
+		}
 	}
 </style>

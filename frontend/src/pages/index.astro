@@ -10,7 +10,7 @@ const query = {
 	sponsored: { $ne: true },
 	created_at: { $gte: sevenDaysAgo.toISOString() }
 };
-const data = await getByQuery(query)
+const data = await getByQuery({ query })
 const count = await getCount()
 const todayData = data.filter(elem => new Date().toISOString().substring(0,10) === elem.created_at.substring(0,10))
 ---
@@ -44,86 +44,17 @@ const todayData = data.filter(elem => new Date().toISOString().substring(0,10) =
 			/>)}
 	</ul>
 
-	<a href="/explore/1" class="button">
+	<a href="/explore" class="button">
 		Explore all Resources
 	</a>
 </Layout>
 
 <style>
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h2 {
-		font-size: 3rem;
-		font-weight: 700;
-		line-height: 1.2;
-		text-align: left;
-		margin-bottom: 0.75em;
-	}
-	h2 mark {
-		background: var(--accent-gradient);
-		color: #fff;
-		padding: 0 0.2em;
-	}
-	h2::after, h3::after {
-		content: '';
-		display: block;
-		height: 3px;
-		background: var(--accent-gradient);
-		width: 50%;
-		margin-top: 0.75em;
-		border-radius: 1px;
-	}
-	h3::after {
-		width: 50px;
-		margin-top: 0.25em;
-		height: 2px;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-
 	.button {
 		padding: 1.25rem 2rem;
-		appearance: none;
-		text-align: left;
-		text-decoration: none;
-		box-sizing: border-box;
-		display: inline-block;
-		width: auto;
-		border-radius: 0.25rem;
-		font-weight: 600;
-		position: relative;
-		line-height: 1;
-		font-size: 1.25rem;
-		user-select: none;
-		cursor: pointer;
-		border: 0.0625rem solid transparent;
-		background-color: var(--accent-dark);
-		color: rgb(255, 255, 255);
-		width: 50%;
 		margin: 2em auto;
-		text-align: center;
+		font-size: 1.25rem;
 		min-width: 300px;
-		display: block;
-	}
-	.button:hover {
-		opacity: 0.8;
+		height: 100%;
 	}
 </style>

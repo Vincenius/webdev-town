@@ -1,0 +1,28 @@
+---
+import { getImage } from "astro:assets";
+import Layout from '../layouts/Layout.astro';
+import Explore from '../react-components/Explore.jsx';
+import { getByQuery } from '../utils/database';
+
+const images = import.meta.glob('../assets/content/**/*')
+const optimizedImages = await Promise.all(Object.keys(images).map(async key => {
+	if (images[key]) {
+		const myImage = await images[key]()
+		const optimizedImage = await getImage({ src: myImage.default, width: 300 })
+		return {
+			path: key,
+			image: optimizedImage.src,
+		}
+	} else {
+		return {
+			path: key,
+			image: '/TODO-fallback.jpg'
+		}
+	}
+}))
+const initialData = await getByQuery({ query: { sponsored: { $ne: true } } })
+---
+<Layout title="WebDev Town | Browse all resources.">
+	<Explore optimizedImages={optimizedImages} initialData={initialData} client:only />
+</Layout>
+

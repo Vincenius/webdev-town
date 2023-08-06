@@ -7,7 +7,7 @@ const connectDb = () => {
   return client.connect()
 }
 
-export const getByQuery = async query => {
+export const getByQuery = async ({ query, limit = 50 }) => {
   let result = []
   const dbClient = await connectDb()
 
@@ -15,7 +15,11 @@ export const getByQuery = async query => {
     const db = dbClient.db('weekly')
     const collection = db.collection('weekly')
 
-    result = await collection.find(query).sort({ created_at: -1 }).toArray()
+    result = await collection
+      .find(query)
+      .sort({ created_at: -1 })
+      .limit(limit)
+      .toArray()
   } catch (e) {
     console.log('error', e)
   }
