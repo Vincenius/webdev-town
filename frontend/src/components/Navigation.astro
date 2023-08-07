@@ -7,10 +7,8 @@ import logo from '../assets/logo.svg';
     <Image class="logo" src={logo} width={40} alt="circuit board house logo"/>
     <h1>WebDev Town</h1>
   </a>
-  <div>
-    <!-- <a>Explore</a> -->
-    <!-- <a>Submit Resource</a>
-    <a>Sponsor</a> -->
+  <div class="menu">
+    <a href="/submit" class="submit">Submit Resource</a>
   </div>
 </nav>
 <style>
@@ -31,5 +29,17 @@ import logo from '../assets/logo.svg';
   h1 {
     font-size: 1em;
     margin: 0;
+  }
+
+  .menu a {
+    text-decoration: none;
+    margin: 0 0.5em;
+    font-size: 0.7em;
+  }
+
+  .submit {
+    padding: .5em;
+    border: 1px solid var(--accent-light);
+    border-radius: .5em;
   }
 </style>

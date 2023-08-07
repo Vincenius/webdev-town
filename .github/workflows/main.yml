@@ -30,13 +30,13 @@ jobs:
 
       - name: Install Node.js dependencies
         run: |
-          cd ./lambda
+          cd ./api
           npm install
 
       - name: Deploy Lambda Function
         run: |
-          # Zip the contents of the ./lambda directory
-          cd ./lambda
+          # Zip the contents of the ./api directory
+          cd ./api
           zip -r lambda_function.zip ./*
 
           # Check if the Lambda function exists

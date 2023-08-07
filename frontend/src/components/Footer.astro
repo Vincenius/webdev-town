@@ -4,13 +4,17 @@ import logo from '../assets/logo.svg'
 ---
 
 <footer>
-  <span class="logo-container">
-    <Image class="logo" src={logo} width={40} alt="circuit board house logo"/>
-    <span>WebDev Town</span>
-  </span>
+  <div>
+    <span class="logo-container">
+      <Image class="logo" src={logo} width={40} alt="circuit board house logo"/>
+      <span>WebDev Town</span>
+    </span>
+    <div class="twitter">
+      created by <a href="https://twitter.com/wweb_dev" target="_blank" rel="noopener noreferrer">@wweb_dev</a>
+    </div>
+  </div>
   <div class="links">
-    <!-- <a href="/about">About</a>
-    <a href="/sponsorship">Sponsorship</a> -->
+    <a href="/sponsorship">Sponsorship</a>
     <a href="/privacy">Privacy Policy</a>
   </div>
 </footer>
@@ -26,17 +30,14 @@ import logo from '../assets/logo.svg'
   .logo-container {
     display: flex;
     align-items: center;
+    margin-bottom: 0.5em;
   }
   .logo {
     margin-right: 1em;
   }
-  .links a {
+  .links a, .twitter {
     text-decoration: none;
     display: block;
-    color: #fff;
     font-size: 0.8em;
-  }
-  .links a:hover {
-    opacity: 0.6;
   }
 </style>

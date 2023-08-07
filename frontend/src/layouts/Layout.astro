@@ -96,6 +96,13 @@ const { title } = Astro.props;
 		margin-top: 0.25em;
 		height: 2px;
 	}
+	a {
+		color: var(--accent-light);
+    cursor: pointer;
+  }
+  a:hover {
+    opacity: 0.7;
+  }
 
 	.text-gradient {
 		background-image: var(--accent-gradient);
@@ -180,6 +187,7 @@ const { title } = Astro.props;
 		border-radius: 8px;
 		color: white;
 		background-color: #23262d;
+		opacity: 1;
 	}
 	.content {
 		padding: calc(1.5rem - 1px);
@@ -219,7 +227,7 @@ const { title } = Astro.props;
 		font-size: 0.75em;
 	}
 
-	input[type=email], input[type=text] {
+	input[type=email], input[type=text], textarea {
     height: 2.625rem;
     line-height: calc(2.5rem);
     appearance: none;
@@ -238,6 +246,11 @@ const { title } = Astro.props;
     padding-right: calc(0.875rem);
     border-radius: 0.25rem;
   }
+
+	textarea {
+		height: 5rem;
+		line-height: 1.2em;
+	}
 
 	@container (max-width: 250px) {
 		.content {
