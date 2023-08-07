@@ -6,13 +6,13 @@ const sendEmail = require('./email')
 const cors = process.env.CORS
 
 const defaultResponse = {
-  statusCode: 200,
-  headers: {
+  "statusCode": 200,
+  "headers": {
     "Access-Control-Allow-Origin" : cors,
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
   },
-  body: {},
+  "body": "{}",
 }
 
 exports.handler = async (event) => {
@@ -27,11 +27,11 @@ exports.handler = async (event) => {
   
       const response = {
         ...defaultResponse,
-        body: {
+        body: JSON.stringify({
           page,
           total: count,
           result,
-        },
+        }),
       };
       return response;
     } else if (method === "POST") {
@@ -43,9 +43,9 @@ exports.handler = async (event) => {
     } else {
       return {
         ...defaultResponse,
-        body: {
+        body: JSON.stringify({
           message: "Method not allowed"
-        },
+        }),
       };
     }
   } catch (e) {

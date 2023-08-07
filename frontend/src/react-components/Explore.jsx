@@ -68,7 +68,7 @@ const Explore = ({ optimizedImages, initialData, initialTotal }) => {
     setIsLoading(true)
 
     const response = await fetch(`${import.meta.env.PUBLIC_API_URL}?q=${searchVal}`).then(res => res.json())
-    const { result, page: newPage, total } = response
+    const { result, page: newPage, total } = JSON.parse(response)
 
     setData(result)
     setPage(parseInt(newPage))
@@ -81,7 +81,7 @@ const Explore = ({ optimizedImages, initialData, initialTotal }) => {
 
     const query = `?${searchVal ? `q=${searchVal}` : ''}&page=${page + 1}`
     const response = await fetch(`${import.meta.env.PUBLIC_API_URL}${query}`).then(res => res.json())
-    const { result, page: newPage, total } = response
+    const { result, page: newPage, total } = JSON.parse(response)
 
     setData([ ...data, ...result ])
     setPage(parseInt(newPage))

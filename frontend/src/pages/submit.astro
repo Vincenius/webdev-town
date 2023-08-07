@@ -136,7 +136,7 @@ import Layout from '../layouts/Layout.astro';
         'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(values),
-		}).then(res => {
+		}).then(() => {
 			submitForm.classList.add('hidden')
 			document.querySelector('.success').classList.remove('hidden')
 		})
