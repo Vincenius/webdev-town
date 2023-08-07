@@ -2,6 +2,7 @@ import fs from 'fs';
 import { simpleGit, CleanOptions } from 'simple-git'
 import fetch from 'node-fetch'
 import { convert, resize } from "easyimage"
+import { create } from '../../utils/database'
 
 const download = async ({ url, path }) => {
   const response = await fetch(url);
@@ -13,7 +14,7 @@ const git = simpleGit() // .clean(CleanOptions.FORCE);
 
 const handler = async (req, res) => {
   const body = JSON.parse(req.body);
-  // todo handle local file
+
   const fileExt = body.image.split('.').pop();
   const fileName = `${new Date().toISOString()}-${body.title.replace(/[^a-zA-Z0-9]/g, '')}.${fileExt}`
   const path = `../frontend/src/assets/content/0_new/${fileName}` // directly store in frontend directory
@@ -39,12 +40,18 @@ const handler = async (req, res) => {
     onlyDownscale: true,
   })
 
-  // TODO update database
+  await create({
+    title: body.title,
+    description: body.description,
+    link: body.url,
+    image: destPath.replace('../frontend/src/assets', '../assets'),
+    created_at: body.created_at,
+  })
 
   // await git.pull();
 
   // await simpleGit().add(destPath);
-  // await simpleGit().commit('testing automatic commits!')
+  // await simpleGit().commit(`add ${body.title}!`)
   // await simpleGit().push('origin', 'main');
 
   res.status(200).json({  })

@@ -10,7 +10,7 @@ const images = import.meta.glob('../assets/content/**/*')
 
 const { href, title, body, image } = Astro.props;
 let domain = (new URL(href))
-let imagePath = image.replace('/weekly', '../assets'); // todo update database
+let imagePath = image.replace('/weekly', '../assets');
 const myImage = images[imagePath]
 	? await images[imagePath]()
 	: { default: 'no-image' };

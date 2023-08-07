@@ -16,36 +16,43 @@ const defaultResponse = {
 }
 
 exports.handler = async (event) => {
-  const method = event.requestContext.http.method;
-  console.log(event)
-  if (method === "GET") {
-    const queryParams = event["queryStringParameters"] || {}
-    const { q: search, page: pageString } = queryParams;
-
-    const page = parseInt(pageString, 10) || 1;
-    const { result, count } = await db.getByQuery({ search, page });
-
-    const response = {
-      ...defaultResponse,
-      body: {
-        page,
-        total: count,
-        result,
-      },
-    };
-    return response;
-  } else if (method === "POST") {
-    await sendEmail(event.body)
-    const response = defaultResponse
-    return response;
-  } else if (method === "OPTIONS") {
-    return defaultResponse;
-  } else {
+  try {
+    const method = event.requestContext.http.method;
+    if (method === "GET") {
+      const queryParams = event["queryStringParameters"] || {}
+      const { q: search, page: pageString } = queryParams;
+  
+      const page = parseInt(pageString, 10) || 1;
+      const { result, count } = await db.getByQuery({ search, page });
+  
+      const response = {
+        ...defaultResponse,
+        body: {
+          page,
+          total: count,
+          result,
+        },
+      };
+      return response;
+    } else if (method === "POST") {
+      await sendEmail(event.body)
+      const response = defaultResponse
+      return response;
+    } else if (method === "OPTIONS") {
+      return defaultResponse;
+    } else {
+      return {
+        ...defaultResponse,
+        body: {
+          message: "Method not allowed"
+        },
+      };
+    }
+  } catch (e) {
     return {
       ...defaultResponse,
-      body: {
-        message: "Method not allowed"
-      },
-    };
+      statusCode: 500,
+    }
   }
+
 };
