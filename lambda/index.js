@@ -10,6 +10,9 @@ exports.handler = async (event) => {
 
   const response = {
     statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin" : "*", // todo env variable
+    },
     body: JSON.stringify({
       page,
       total: count,

@@ -55,25 +55,11 @@
     margin-right: 0.5em;
   }
 
-  form input[type=email] {
-    height: 2.625rem;
-    line-height: calc(2.5rem);
-    appearance: none;
-    resize: none;
-    box-sizing: border-box;
-    font-size: 1rem;
-    width: 100%;
-    color: rgb(0, 0, 0);
-    display: block;
-    text-align: left;
-    border: 0.0625rem solid rgb(206, 212, 218);
-    background-color: rgb(255, 255, 255);
-    transition: border-color 100ms ease 0s;
-    min-height: 2.625rem;
-    padding-left: calc(0.875rem);
-    padding-right: calc(0.875rem);
-    border-radius: 0.25rem;
-  }
+  @media (max-width: 400px) {
+    .ml-form-formContent {
+      min-width: 150px;
+    }
+	}
 </style>
 <script is:inline>
   function ml_webform_success_5959351(){var r=ml_jQuery||jQuery;r(".ml-subscribe-form-5959351 .row-success").show(),r(".ml-subscribe-form-5959351 .row-form").hide()}

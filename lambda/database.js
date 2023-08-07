@@ -37,10 +37,10 @@ module.exports = {
                 : { created_at: -1 }
             },
             {
-              $limit: (page * 50)
+              $limit: (page * 48)
             },
             {
-              $skip: (page - 1) * 50
+              $skip: (page - 1) * 48
             }
           ],
           totalCount: [

@@ -7,7 +7,7 @@ const connectDb = () => {
   return client.connect()
 }
 
-export const getByQuery = async ({ query, limit = 50 }) => {
+export const getByQuery = async ({ query, limit = 48 }) => {
   let result = []
   const dbClient = await connectDb()
 

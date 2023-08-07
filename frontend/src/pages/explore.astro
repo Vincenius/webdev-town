@@ -2,7 +2,7 @@
 import { getImage } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
 import Explore from '../react-components/Explore.jsx';
-import { getByQuery } from '../utils/database';
+import { getByQuery, getCount } from '../utils/database';
 
 const images = import.meta.glob('../assets/content/**/*')
 const optimizedImages = await Promise.all(Object.keys(images).map(async key => {
@@ -16,13 +16,14 @@ const optimizedImages = await Promise.all(Object.keys(images).map(async key => {
 	} else {
 		return {
 			path: key,
-			image: '/TODO-fallback.jpg'
+			image: '/social.png'
 		}
 	}
 }))
 const initialData = await getByQuery({ query: { sponsored: { $ne: true } } })
+const count = await getCount()
 ---
 <Layout title="WebDev Town | Browse all resources.">
-	<Explore optimizedImages={optimizedImages} initialData={initialData} client:only />
+	<Explore optimizedImages={optimizedImages} initialData={initialData} initialTotal={count} client:only />
 </Layout>
 

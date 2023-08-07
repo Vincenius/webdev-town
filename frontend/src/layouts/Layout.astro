@@ -82,19 +82,6 @@ const { title } = Astro.props;
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
-
-	h2 {
-		font-size: 3rem;
-		font-weight: 700;
-		line-height: 1.2;
-		text-align: left;
-		margin-bottom: 0.75em;
-	}
-	h2 mark {
-		background: var(--accent-gradient);
-		color: #fff;
-		padding: 0 0.2em;
-	}
 	h2::after, h3::after {
 		content: '';
 		display: block;
@@ -166,5 +153,96 @@ const { title } = Astro.props;
 	}
 	.button:hover {
 		opacity: 0.8;
+	}
+
+	.link-card {
+		position: relative;
+		z-index: 1;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		padding: 1px;
+		background-color: #23262d;
+		background-image: none;
+		background-size: 400%;
+		border-radius: var(--border-radius);
+		background-position: 100%;
+		box-shadow: var(--box-shadow);
+		width: 100%;
+		max-width: 300px;
+		container-type: inline-size;
+	}
+	.link-card > a {
+		width: 100%;
+		height: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		border-radius: 8px;
+		color: white;
+		background-color: #23262d;
+	}
+	.content {
+		padding: calc(1.5rem - 1px);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		box-sizing: border-box;
+	}
+	h3 {
+		margin: 0;
+		font-size: 1.15em;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.image {
+		object-fit: cover;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+	}
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+	.link-card:not(.no-hover):hover::after {
+		content: "";
+		position: absolute;
+		inset: -5px; /* control the spread */
+		z-index: -1; /* place the element behind */
+		background: var(--accent-gradient);/* your gradient here */;
+		filter: blur(10px); /* control the blur */
+	}
+	.host {
+		margin: 1em 0 0;
+		opacity: 0.5;
+		font-size: 0.75em;
+	}
+
+	input[type=email], input[type=text] {
+    height: 2.625rem;
+    line-height: calc(2.5rem);
+    appearance: none;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 1rem;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    display: block;
+    text-align: left;
+    border: 0.0625rem solid rgb(206, 212, 218);
+    background-color: rgb(255, 255, 255);
+    transition: border-color 100ms ease 0s;
+    min-height: 2.625rem;
+    padding-left: calc(0.875rem);
+    padding-right: calc(0.875rem);
+    border-radius: 0.25rem;
+  }
+
+	@container (max-width: 250px) {
+		.content {
+			font-size: 0.75em;
+			padding: calc(1rem - 1px);
+		}
 	}
 </style>
