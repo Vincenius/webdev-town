@@ -31,4 +31,4 @@ jobs:
       - name: Push to AWS S3
         run: |
           # sync files
-          aws s3 sync ./frontend/src/assets s3://webdev-town-cdn --include "*" --delete
+          aws s3 sync ./frontend/src/assets/content s3://webdev-town-cdn --exclude '*' --include "*.jpg" --include "*.png" --include "*.jpeg" --delete
