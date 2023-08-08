@@ -7,17 +7,44 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const description = "A curated list of web development tools, articles, libraries and more. It gets updated every day."
+const link = "https://webdev.town"
+const imageLink = "https://webdev.town/social.png"
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content={description}>
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<meta name='robots' content='index, follow'></meta>
+		<meta char-set='utf-8'></meta>
+		<link rel='icon' href='/favicon.ico' />
+		<meta name='description' content={description}></meta>
+		<link rel='canonical' href={link} />
+		<meta name='twitter:card' content='summary_large_image' />
+		<meta name='twitter:site' content={link} />
+		<meta name='twitter:title' content={title} />
+		<meta name='twitter:description' content={description} />
+		<meta name='twitter:creator' content='@wweb_dev' />
+		<meta name='twitter:image' content={imageLink} />
+		<meta property='og:title' content={title} />
+		<meta property='og:image' content={imageLink} />
+		<meta property='og:site_name' content='workout.lol' />
+		<meta property='og:description' content={description} />
+		<meta property='og:url' content={link} />
+
+		<!-- <script
+			async
+			defer
+			data-website-id='8a475643-d28f-48c6-bed0-c4bd0833f87f'
+			src='https://analytics.vincentwill.com/umami.js'
+		></script> -->
 	</head>
 	<body>
 		<main>

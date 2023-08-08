@@ -10,7 +10,6 @@ middle
 long
 - write script to fetch duplicate title / urls & check for duplicates
 - improve Admin interface
-  - fetch screenshot
   - button for automatic email generation
   - add sponsored posts
     - active + last_used fields

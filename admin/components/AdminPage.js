@@ -14,6 +14,7 @@ const AdminPage = () => {
   const [createdAt, setCreatedAt] = useState('')
   const [uploadImage, setUploadImage] = useState()
   const [loading, setLoading] = useState(false)
+  const [screenshotLoading, setScreenshotLoading] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
 
   const uploadFile = file => {
@@ -60,6 +61,13 @@ const AdminPage = () => {
     setLoading(false)
   };
 
+  const fetchScreenshot = async () => {
+    setScreenshotLoading(true)
+    const { path } = await fetch(`/api/screenshot?url=${encodeURI(url)}`).then(res => res.json())
+    setImage(path)
+    setScreenshotLoading(false)
+  }
+
   return <main className={styles.main}>
     <Title order={1}>Admin Page</Title>
 
@@ -100,7 +108,17 @@ const AdminPage = () => {
       onChange={uploadFile}
       mb="sm"
     />
-    <Image src={image} alt="" />
+
+    <Button
+      mb="sm"
+      loading={screenshotLoading}
+      onClick={fetchScreenshot}
+    >
+      Screenshot
+    </Button>
+
+
+    { image && <Image src={image.replace('./public', '')} alt="" /> }
 
     { isLoading && <div>Loading....</div> }
     { !isLoading && <Flex wrap="wrap" mb="md">
