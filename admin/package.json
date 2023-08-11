@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cron": "node scripts/cron.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -17,6 +18,7 @@
     "@mantine/hooks": "^6.0.17",
     "@mantine/next": "^6.0.17",
     "capture-website": "^3.2.0",
+    "croner": "^6.0.7",
     "dayjs": "^1.11.9",
     "easyimage": "^3.1.1",
     "eslint": "8.46.0",

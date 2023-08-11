@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { simpleGit, CleanOptions } from 'simple-git'
+import { simpleGit } from 'simple-git'
 import fetch from 'node-fetch'
 import { convert, resize } from "easyimage"
 import { create } from '../../utils/database'
@@ -48,11 +48,8 @@ const handler = async (req, res) => {
     created_at: body.created_at,
   })
 
-  // await git.pull();
-
-  // await simpleGit().add(destPath);
-  // await simpleGit().commit(`add ${body.title}!`)
-  // await simpleGit().push('origin', 'main');
+  await git.pull()
+  await simpleGit().add(destPath)
 
   res.status(200).json({  })
 }
