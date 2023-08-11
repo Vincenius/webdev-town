@@ -1,20 +1,22 @@
 import fs from 'fs'
-import puppeteer from "puppeteer"
+import fetch from 'node-fetch'
+
+const download = async ({ url, path }) => {
+  const response = await fetch(url);
+  const buffer = await response.buffer();
+  fs.writeFileSync(path, buffer)
+}
 
 const handler = async (req, res) => {
   const url = decodeURI(req.query.url)
-  const browser = await puppeteer.launch({ headless: 'new' });
-  const page = await browser.newPage();
   const path = './public/screenshot.jpeg'
+  const apiUrl = `https://api.screenshotmachine.com?key=${process.env.SCREENSHOT_API_KEY}&url=${url}&dimension=1200x630`
 
   if (fs.existsSync(path)) {
     fs.unlinkSync(path)
   }
 
-  await page.setViewport({ width: 1200, height: 630 });
-  await page.goto(url);
-  await page.screenshot({ path });
-  await browser.close();
+  await download({ url: apiUrl, path })
 
   res.status(200).json({ path })
 }
