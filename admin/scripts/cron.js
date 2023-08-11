@@ -22,5 +22,3 @@ const run = async () => {
 const job = Cron("0 0 3 * * *", { utcOffset: 0 }, async () => {
   await run()
 } );
-
-run()
