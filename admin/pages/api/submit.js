@@ -15,7 +15,10 @@ const git = simpleGit() // .clean(CleanOptions.FORCE);
 const handler = async (req, res) => {
   const body = JSON.parse(req.body);
 
-  const fileExt = body.image.split('.').pop();
+  const fileExt =  body.image.includes('https://api.screenshotmachine.com')
+    ? '.jpg'
+    : body.image.split('.').pop();
+  console.log('YO', fileExt)
   const fileName = `${new Date().toISOString()}-${body.title.replace(/[^a-zA-Z0-9]/g, '')}.${fileExt}`
   const path = `../frontend/src/assets/content/0_new/${fileName}` // directly store in frontend directory
 
@@ -27,11 +30,16 @@ const handler = async (req, res) => {
   }
 
   const destPath = path.replace(fileExt, 'jpg')
-  await convert({
-    src: path,
-    dst: destPath,
-  });
-  fs.unlinkSync(path)
+  if (path !== destPath) {
+    console.log(path, destPath)
+    await convert({
+      src: path,
+      dst: destPath,
+    });
+    if (fs.existsSync(path)) {
+      fs.unlinkSync(path)
+    }
+  }
 
   await resize({
     src: destPath,
