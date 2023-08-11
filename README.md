@@ -1,8 +1,6 @@
 # todos before launch
 
 fast
-- privacy policy
-- sponsorship info page
 - finish automatic email generation
 - email header image
 

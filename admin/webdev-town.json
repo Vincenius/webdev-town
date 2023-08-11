@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "webdev-town",
+            "script": "npm",
+            "args": "run start"
+        }
+    ]
+}
