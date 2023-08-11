@@ -3,7 +3,7 @@ import captureWebsite from 'capture-website';
 
 const handler = async (req, res) => {
   const url = decodeURI(req.query.url)
-  const options = { width: 1200, height: 630, launchOptions: { headless: true } }
+  const options = { width: 1200, height: 630, launchOptions: { headless: true, executablePath: process.env.CHROMIUM_PATH } }
   const path = './public/screenshot.jpeg'
   if (fs.existsSync(path)) {
     fs.unlinkSync(path)
