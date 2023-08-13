@@ -19,6 +19,6 @@ const run = async () => {
   console.log('Cron job done')
 }
 
-const job = Cron("0 0 3 * * *", { utcOffset: 0 }, async () => {
+const job = Cron("0 0 2 * * *", { utcOffset: 0 }, async () => {
   await run()
 } );
