@@ -4,11 +4,15 @@ import Card from '../components/Card.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getByQuery, getCount } from '../utils/database';
 
+const today = new Date();
 const sevenDaysAgo = new Date();
 sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 const query = {
 	sponsored: { $ne: true },
-	created_at: { $gte: sevenDaysAgo.toISOString() }
+	created_at: {
+		$gte: sevenDaysAgo.toISOString(),
+		$lte: today.toISOString(),
+	}
 };
 const data = await getByQuery({ query })
 const count = await getCount()

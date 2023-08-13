@@ -20,7 +20,13 @@ const optimizedImages = await Promise.all(Object.keys(images).map(async key => {
 		}
 	}
 }))
-const initialData = await getByQuery({ query: { sponsored: { $ne: true } } })
+const today = new Date();
+const initialData = await getByQuery({query: {
+	sponsored: { $ne: true },
+	created_at: {
+		$lte: today.toISOString(),
+	}
+} })
 const count = await getCount()
 ---
 <Layout title="WebDev Town | Browse all resources.">
