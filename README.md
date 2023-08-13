@@ -4,13 +4,10 @@ fast
 - finish automatic email generation
 - email header image
 
-long
-- write script to fetch duplicate title / urls & check for duplicates
 
 # todos after launch
 
-
-- deploy admin interface to raspberry (with password protection on caddy)
+- check for duplicates when adding resource on admin
 - info + redirect wwebdev
 - clean database
 - improve Admin interface
