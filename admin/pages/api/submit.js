@@ -4,6 +4,19 @@ import fetch from 'node-fetch'
 import { convert, resize } from "easyimage"
 import { create } from '../../utils/database'
 
+function isImageUrl(url) {
+  const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp'];
+  const lowercasedUrl = url.toLowerCase();
+
+  for (const ext of imageExtensions) {
+      if (lowercasedUrl.endsWith(ext)) {
+          return true;
+      }
+  }
+
+  return false;
+}
+
 const download = async ({ url, path }) => {
   const response = await fetch(url);
   const buffer = await response.buffer();
@@ -17,8 +30,9 @@ const handler = async (req, res) => {
 
   const fileExt =  body.image.includes('https://api.screenshotmachine.com')
     ? '.jpg'
-    : body.image.split('.').pop();
-  console.log('YO', fileExt)
+    : !isImageUrl(body.image)
+      ? '.png' // fallback for urls without image ending (usually from github)
+      : body.image.split('.').pop();
   const fileName = `${new Date().toISOString()}-${body.title.replace(/[^a-zA-Z0-9]/g, '')}.${fileExt}`
   const path = `../frontend/src/assets/content/0_new/${fileName}` // directly store in frontend directory
 
@@ -31,7 +45,6 @@ const handler = async (req, res) => {
 
   const destPath = path.replace(fileExt, 'jpg')
   if (path !== destPath) {
-    console.log(path, destPath)
     await convert({
       src: path,
       dst: destPath,
