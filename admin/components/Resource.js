@@ -123,7 +123,7 @@ const AdminPage = () => {
         const date = new Date()
         const randomMs = Math.floor(Math.random() * 1000)
         date.setDate(date.getDate() + i)
-        date.setHours(4,0,0,randomMs);
+        date.setUTCHours(2, 0, 0, randomMs)
         const dateData = (data || []).filter(elem => date.toISOString().substring(0,10) === elem.created_at.substring(0,10))
         const color = createdAt.substring(0,10) === date.toISOString().substring(0,10)
           ? 'blue'
