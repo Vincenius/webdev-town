@@ -25,7 +25,7 @@ const handler = async (req, res) => {
       </mj-style>
     </mj-head>
     <mj-body>
-      <mj-section background-color="#2a3448">
+      <mj-section background-color="#232526">
         <mj-column>
           <mj-image src="https://webdev.town/email-header.png" width="400px" padding-bottom="20px" alt="WebDev Town" fluid-on-mobile="true"/>
           <mj-text align="center" color="#fff">
@@ -102,7 +102,7 @@ const handler = async (req, res) => {
 
   const htmlOutput = mjml2html(markdown)
 
-  res.status(200).json({ result: markdown })
+  res.status(200).json({ result: htmlOutput.html })
 }
 
 export default handler
