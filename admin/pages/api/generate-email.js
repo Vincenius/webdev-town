@@ -25,11 +25,14 @@ const handler = async (req, res) => {
       </mj-style>
     </mj-head>
     <mj-body>
-      <mj-hero mode="fixed-height" height="300px" background-width="600px" background-height="300px" background-url="https://webdev.town/email-header.png" background-color="#2a3448" padding="120px 0px 0px">
-        <mj-text align="center" color="#fff">
+      <mj-section background-color="#2a3448">
+        <mj-column>
+          <mj-image src="https://webdev.town/email-header.png" width="400px" padding-bottom="20px" alt="WebDev Town" fluid-on-mobile="true"/>
+          <mj-text align="center" color="#fff">
           <h2>${new Date(fromDate).toLocaleDateString("en-US")} - ${new Date(toDate).toLocaleDateString("en-US")}</h2>
-        </mj-text>
-      </mj-hero>
+          </mj-text>
+        </mj-column>
+      </mj-section>
       <mj-section>
         <mj-column>
           <mj-text>Here's the summary of this weeks <a href="https://webdev.town">WebDev Town</a> resources.</mj-text>
