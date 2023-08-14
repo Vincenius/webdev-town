@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import { Button, Textarea } from '@mantine/core';
+import { Button, Textarea, Flex } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 
 const defaultText = 'If you have any feedback or you want to share tools and resources for the next newsletter - just answer to this email.'
 
 const Email = () => {
+  const today = new Date()
+  today.setUTCHours(3, 0, 0, 0)
   const [intro, setIntro] = useState(defaultText)
   const [loading, setLoading] = useState(false)
-  const [date, setDate] = useState(null) // todo read from local storage
+  const [fromDate, setFromDate] = useState(null) // todo read from local storage
+  const [toDate, setToDate] = useState(today)
 
   const getEmail = async () => {
     setLoading(true)
@@ -15,11 +18,11 @@ const Email = () => {
       method: 'POST',
       body: JSON.stringify({
         intro: intro.replace(/(?:\r\n|\r|\n)/g, '<br>'),
-        date: date.toISOString(),
+        fromDate: fromDate.toISOString(),
+        toDate: toDate.toISOString(),
       })
     }).then(res => res.json())
 
-    console.log(result)
     navigator.clipboard.writeText(result).then(function() {
       console.log('Async: Copying to clipboard was successful!');
     }, function(err) {
@@ -32,14 +35,31 @@ const Email = () => {
   }
 
   return <div>
+  <Flex>
     <DateInput
-      value={date}
-      onChange={setDate}
+      value={fromDate}
+      onChange={date => {
+        date.setUTCHours(1, 0, 0, 0) // include selected day
+        setFromDate(date)
+      }}
       label="From date"
       placeholder="From date"
       maw={400}
       mb="md"
     />
+    <DateInput
+      value={toDate}
+      onChange={date => {
+        date.setUTCHours(3, 0, 0, 0) // include selected day
+        setToDate(date)
+      }}
+      label="To date"
+      placeholder="To date"
+      maw={400}
+      mb="md"
+    />
+  </Flex>
+
     <Textarea
       placeholder="Email Intro"
       label="Email Intro"

@@ -4,15 +4,12 @@ import { getByQuery } from '../../utils/database'
 
 
 const handler = async (req, res) => {
-  const { intro, date } = JSON.parse(req.body)
-  const today = new Date();
+  const { intro, fromDate, toDate } = JSON.parse(req.body)
   const query = {
     sponsored: { $ne: true },
-    created_at: { $lte: today.toISOString(), $gte: date }
+    created_at: { $lte: toDate, $gte: fromDate }
   };
   const data = await getByQuery({ query })
-
-  // todo header image
 
   let markdown = `<mjml>
     <mj-head>
@@ -27,10 +24,14 @@ const handler = async (req, res) => {
       </mj-style>
     </mj-head>
     <mj-body>
+      <mj-hero mode="fixed-height" height="300px" background-width="600px" background-height="300px" background-url="https://webdev.town/email-header.png" background-color="#2a3448" padding="120px 0px 0px">
+        <mj-text align="center" color="#fff">
+          <h2>${new Date(fromDate).toLocaleDateString("en-US")} - ${new Date(toDate).toLocaleDateString("en-US")}</h2>
+        </mj-text>
+      </mj-hero>
       <mj-section>
         <mj-column>
-          <mj-image src="https://wweb.dev/weekly/social/weekly1.jpg" fluid-on-mobile="true" />
-          <mj-text>Here's the summary of this weeks <a href="https://webdev.town">WebDev Town<a> resources.</mj-text>
+          <mj-text>Here's the summary of this weeks <a href="https://webdev.town">WebDev Town</a> resources.</mj-text>
           <mj-text>${intro}</mj-text>
         </mj-column>
       </mj-section>
@@ -41,7 +42,7 @@ const handler = async (req, res) => {
 
         const baseUrl = process.env.S3_CDN
         const image1 = `${baseUrl}/${item.image.replace('/weekly/content/', '')}`
-        const image2 = `${baseUrl}/${item2.image.replace('/weekly/content/', '')}`
+        const image2 = item2 && `${baseUrl}/${item2.image.replace('/weekly/content/', '')}`
 
         markdown= `${markdown}
         <mj-section>
@@ -82,7 +83,7 @@ const handler = async (req, res) => {
             <mj-text>🚀 helping me grow by sharing it with your friends and colleagues</mj-text>
             <mj-text></mj-text>
             <mj-text line-height="0">Cheers,</mj-text>
-            <mj-text line-height="0">Vincent from webdev.town</mj-text>
+            <mj-text line-height="0">Vincent from <a href="https://webdev.town">WebDev Town</a></mj-text>
           </mj-column>
         </mj-section>
         <mj-section>
