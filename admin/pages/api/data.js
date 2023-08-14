@@ -2,8 +2,9 @@ import { getByQuery } from '../../utils/database'
 
 const handler = async (req, res) => {
   const today = new Date();
+  today.setUTCDate(0, 1, 0, 0)
   const query = {
-    sponsored: { $ne: true },
+    // sponsored: { $ne: true },
     created_at: { $gte: today.toISOString() }
   };
   const result = await getByQuery({ query })

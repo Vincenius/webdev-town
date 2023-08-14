@@ -8,7 +8,6 @@ const today = new Date();
 const sevenDaysAgo = new Date();
 sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 const query = {
-	sponsored: { $ne: true },
 	created_at: {
 		$gte: sevenDaysAgo.toISOString(),
 		$lte: today.toISOString(),
@@ -16,7 +15,9 @@ const query = {
 };
 const data = await getByQuery({ query })
 const count = await getCount()
-const todayData = data.filter(elem => new Date().toISOString().substring(0,10) === elem.created_at.substring(0,10))
+const todayData = data
+	.filter(elem => new Date().toISOString().substring(0,10) === elem.created_at.substring(0,10))
+	.sort((a, b) => a.sponsored ? -1 : b.created_at.localeCompare(a.created_at))
 ---
 
 <Layout title="WebDev Town | A curated list of web development tools articles libraries and resources that gets updated every day.">
@@ -32,6 +33,7 @@ const todayData = data.filter(elem => new Date().toISOString().substring(0,10) =
 				title={elem.title}
 				body={elem.description}
 				image={elem.image}
+				sponsored={elem.sponsored}
 			/>)}
 		</ul>
 	</> : <></>}

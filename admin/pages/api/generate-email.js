@@ -6,10 +6,11 @@ import { getByQuery } from '../../utils/database'
 const handler = async (req, res) => {
   const { intro, fromDate, toDate } = JSON.parse(req.body)
   const query = {
-    sponsored: { $ne: true },
     created_at: { $lte: toDate, $gte: fromDate }
   };
   const data = await getByQuery({ query })
+
+  const sortedData = data.sort((a, b) => a.sponsored ? -1 : b.created_at.localeCompare(a.created_at))
 
   let markdown = `<mjml>
     <mj-head>
@@ -36,9 +37,9 @@ const handler = async (req, res) => {
         </mj-column>
       </mj-section>
       `
-      for (let i = 0; i < data.length; i = i+2) {
-        const item = data[i]
-        const item2 = data[i+1]
+      for (let i = 0; i < sortedData.length; i = i+2) {
+        const item = sortedData[i]
+        const item2 = sortedData[i+1]
 
         const baseUrl = process.env.S3_CDN
         const image1 = `${baseUrl}/${item.image.replace('/weekly/content/', '')}`
@@ -98,7 +99,7 @@ const handler = async (req, res) => {
 
   const htmlOutput = mjml2html(markdown)
 
-  res.status(200).json({ result: htmlOutput.html })
+  res.status(200).json({ result: markdown })
 }
 
 export default handler

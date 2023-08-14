@@ -4,11 +4,12 @@ interface Props {
 	body: string;
 	href: string;
 	image: string;
+	sponsored: boolean;
 }
 import { Image } from 'astro:assets';
 const images = import.meta.glob('../assets/content/**/*')
 
-const { href, title, body, image } = Astro.props;
+const { href, title, body, image, sponsored } = Astro.props;
 let domain = (new URL(href))
 let imagePath = image.replace('/weekly', '../assets');
 const myImage = images[imagePath]
@@ -27,6 +28,7 @@ const myImage = images[imagePath]
 		/>
 		<div class="content">
 			<div>
+				{sponsored && <span class="sponsored">Sponsored</span>}
 				<h3>
 					{title}
 					<span>&rarr;</span>
@@ -41,3 +43,8 @@ const myImage = images[imagePath]
 		</div>
 	</a>
 </li>
+<style>
+	.sponsored {
+		opacity: 0.6;
+	}
+</style>

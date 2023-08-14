@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useSWR from 'swr'
-import { TextInput, Flex, Button, Image, FileInput, Notification } from '@mantine/core';
+import { TextInput, Flex, Button, Image, FileInput, Notification, Checkbox } from '@mantine/core';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -14,6 +14,7 @@ const AdminPage = () => {
   const [uploadImage, setUploadImage] = useState()
   const [loading, setLoading] = useState(false)
   const [screenshotLoading, setScreenshotLoading] = useState(false)
+  const [sponsored, setSponsored] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
 
   const uploadFile = file => {
@@ -42,6 +43,7 @@ const AdminPage = () => {
         description,
         image: imagePath,
         created_at: createdAt,
+        sponsored,
       })
     }).then(res => res.json())
 
@@ -98,6 +100,13 @@ const AdminPage = () => {
       mb="md"
     />
 
+    <Checkbox
+      label="Sponsored"
+      mb="sm"
+      checked={sponsored}
+      onChange={(event) => setSponsored(event.currentTarget.checked)}
+    />
+
     <FileInput
       placeholder="Image file"
       label="Image"
@@ -128,9 +137,10 @@ const AdminPage = () => {
         const color = createdAt.substring(0,10) === date.toISOString().substring(0,10)
           ? 'blue'
           : (dateData.length > 1) ? 'green' : dateData.length === 1 ? 'yellow' : 'red'
+        const hasSponsored = dateData.filter(a => a.sponsored).length > 0
         return <Button
           key={i}
-          m="xs" p="xs" color={color} variant="light"
+          m="xs" p="xs" color={color} variant={hasSponsored ? 'filled' : "light" }
           onClick={() => setCreatedAt(date.toISOString())}
         >
           {date.toLocaleDateString('de-DE', { weekday: "short" })} -&nbsp;
