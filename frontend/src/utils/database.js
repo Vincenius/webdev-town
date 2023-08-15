@@ -37,7 +37,14 @@ export const getCount = async () => {
     const db = dbClient.db('weekly')
     const collection = db.collection('weekly')
 
-    result = await collection.countDocuments()
+    const today = new Date();
+    const query = {
+      sponsored: { $ne: true },
+      created_at: {
+        $lte: today.toISOString(),
+      }
+    };
+    result = await collection.countDocuments(query)
   } catch (e) {
     console.log('error', e)
   }
