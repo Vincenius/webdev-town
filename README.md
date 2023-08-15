@@ -1,3 +1,4 @@
+<img src="https://github.com/Vincenius/webdev-town/blob/main/frontend/public/logo.svg?raw=true" width=25% height=25% />
 <h1>WebDev Town</h1>
 <h3><em>A curated list of web development tools, articles, libraries, and resources that gets updated every day.</em></h3>
 <p>
