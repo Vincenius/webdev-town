@@ -3,7 +3,7 @@ import { Title, Tabs } from '@mantine/core';
 import styles from './AdminPage.module.css'
 import Resource from './Resource'
 import Email from './Email'
-import Sponsors from './Sponsors'
+import Edit from './Edit'
 
 const AdminPage = () => {
   return <main className={styles.main}>
@@ -13,12 +13,12 @@ const AdminPage = () => {
       <Tabs.List mb="md">
         <Tabs.Tab value="resource">Add resource</Tabs.Tab>
         <Tabs.Tab value="email">E-Mail</Tabs.Tab>
-        {/* <Tabs.Tab value="sponsor">Sponsors</Tabs.Tab> */}
+        <Tabs.Tab value="edit">Edit</Tabs.Tab>
       </Tabs.List>
 
       <Tabs.Panel value="resource"><Resource /></Tabs.Panel>
       <Tabs.Panel value="email"><Email /></Tabs.Panel>
-      {/* <Tabs.Panel value="sponsors"><Sponsors /></Tabs.Panel> */}
+      <Tabs.Panel value="edit"><Edit /></Tabs.Panel>
     </Tabs>
   </main>
 }

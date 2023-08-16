@@ -46,3 +46,27 @@ export const create = async (data) => {
 
   return result
 }
+
+export const updateByQuery = async (query, update) => {
+  let result
+  let client
+  try {
+    client = await connectDb()
+    const db = client.db('weekly')
+    const collection = db.collection('weekly')
+
+    result = await collection.findOneAndUpdate(
+      query,
+      { $set: update },
+      { returnDocument: 'after' }
+    )
+  } catch (e) {
+    console.log('error on updating user', e)
+  } finally {
+    if (client) {
+      await client.close()
+    }
+  }
+
+  return result
+}
