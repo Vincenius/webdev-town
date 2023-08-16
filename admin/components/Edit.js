@@ -23,7 +23,7 @@ const Resource = ({ item }) => {
       },
       body: JSON.stringify({
         _id: item._id,
-        created_at: createdAt,
+        created_at: createdAt.toISOString(),
         link: url,
         title: title,
         description: description,

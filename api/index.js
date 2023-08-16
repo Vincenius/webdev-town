@@ -5,8 +5,6 @@ const sendEmail = require('./email')
 
 const { CORS, STRINGIFY_RESPONSE }= process.env
 
-console.log(STRINGIFY_RESPONSE)
-
 const defaultResponse = {
   "statusCode": 200,
   "headers": {
