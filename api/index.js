@@ -38,7 +38,8 @@ exports.handler = async (event) => {
       };
       return response;
     } else if (method === "POST") {
-      await sendEmail(event.body)
+      const body = JSON.parse(event.body)
+      await sendEmail(body)
       const response = defaultResponse
       return response;
     } else if (method === "OPTIONS") {
