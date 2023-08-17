@@ -3,7 +3,7 @@ require('dotenv').config()
 const db = require('./database')
 const sendEmail = require('./email')
 
-const { CORS, STRINGIFY_RESPONSE }= process.env
+const { CORS, STRINGIFY_RESPONSE } = process.env
 
 const defaultResponse = {
   "statusCode": 200,
@@ -12,7 +12,6 @@ const defaultResponse = {
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
   },
-  "body": {},
 }
 
 const parseResponse = response => STRINGIFY_RESPONSE !== 'false'
