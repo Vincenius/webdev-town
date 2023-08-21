@@ -25,6 +25,7 @@ const todayData = data
 
 	<Newsletter />
 
+	<!-- TODO sort best -->
 	{todayData.length > 0 ? <>
 		<h3>Today</h3>
 		<ul role="list" class="link-card-grid">
@@ -34,6 +35,7 @@ const todayData = data
 				body={elem.description}
 				image={elem.image}
 				sponsored={elem.sponsored}
+				favourites={elem.favourites}
 			/>)}
 		</ul>
 	</> : <></>}
@@ -43,11 +45,13 @@ const todayData = data
 		{data
 			.filter(elem => new Date().toISOString().substring(0,10) !== elem.created_at.substring(0,10))
 			.map(elem => <Card
+				id={elem._id.toString()}
 				href={elem.link}
 				title={elem.title}
 				body={elem.description}
 				image={elem.image}
 				sponsored={elem.sponsored}
+				favourites={elem.favourites}
 			/>)}
 	</ul>
 
@@ -57,7 +61,7 @@ const todayData = data
 </Layout>
 
 <style>
-	h2 {
+h2 {
 		font-size: 3rem;
 		font-weight: 700;
 		line-height: 1.2;

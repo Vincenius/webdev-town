@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useSWR from 'swr'
-import { TextInput, Flex, Button, Image, FileInput, Notification, Checkbox } from '@mantine/core';
+import { TextInput, Flex, Button, Image, FileInput, Notification, Checkbox, Textarea } from '@mantine/core';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -91,13 +91,14 @@ const AdminPage = () => {
       mb="md"
     />
 
-    <TextInput
+    <Textarea
       placeholder="Description"
       label="Description"
       withAsterisk
       value={description}
       onChange={(event) => setDescription(event.currentTarget.value)}
       mb="md"
+      maxRows={1}
     />
 
     <Checkbox

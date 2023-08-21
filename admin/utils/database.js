@@ -6,7 +6,7 @@ const connectDb = () => {
   return client.connect()
 }
 
-export const getByQuery = async ({ query }) => {
+export const getByQuery = async ({ query, page = 1 }) => {
   let result = []
   const dbClient = await connectDb()
 
@@ -14,10 +14,12 @@ export const getByQuery = async ({ query }) => {
     const db = dbClient.db('weekly')
     const collection = db.collection('weekly')
 
-    result = await collection
-      .find(query)
-      .sort({ created_at: -1 })
-      .toArray()
+    const queryBuilder = collection.find(query).sort({ created_at: -1 });
+    if (page) {
+      queryBuilder.limit(50).skip((page - 1) * 50);
+    }
+
+    result = await queryBuilder.toArray();
   } catch (e) {
     console.log('error', e)
   }
