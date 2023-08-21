@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import backgroundsImg from '../assets/collections/backgrounds.png'
+---
+<Layout title="WebDev Town | Collections of web development resources based on a category">
+  <h2>Collections</h2>
+  <p>
+    Here you will find collections of various web development resources based on a category.
+  </p>
+  <ul role="list" class="link-card-grid">
+    <Card
+      href="/collections/backgrounds"
+      title="Ultimate Collection Of Websites For Creative Backgrounds"
+      body="A collection of websites to generate backgrounds or to get inspiration. It includes various background generators, CSS patterns, CSS Gradients, and SVG patterns."
+      image="../assets/collections/backgrounds.png"
+      sponsored={false}
+      internal={true}
+    />
+  </ul>
+</Layout>

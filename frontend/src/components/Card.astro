@@ -5,12 +5,13 @@ interface Props {
 	href: string;
 	image: string;
 	sponsored: boolean;
+	internal: boolean;
 }
 import { Image } from 'astro:assets';
-const images = import.meta.glob('../assets/content/**/*')
+const images = import.meta.glob('../assets/**/*')
 
-const { href, title, body, image, sponsored } = Astro.props;
-let domain = (new URL(href))
+const { href, title, body, image, sponsored, internal = false } = Astro.props;
+let domain = internal ? href : (new URL(href))
 let imagePath = image.replace('/weekly', '../assets');
 const myImage = images[imagePath]
 	? await images[imagePath]()
@@ -18,7 +19,7 @@ const myImage = images[imagePath]
 ---
 
 <li class="link-card">
-	<a href={href} target="_blank" rel="noopener noreferrer" draggable="false">
+	<a href={href} target={internal ? '' : "_blank"} rel={internal ? '' : 'noopener noreferrer'} draggable="false">
 		<Image
 			src={myImage.default}
 			alt={title}
@@ -37,9 +38,9 @@ const myImage = images[imagePath]
 					{body}
 				</p>
 			</div>
-			<p class="host">
+			{ !internal && <p class="host">
 				{domain.hostname}
-			</p>
+			</p> }
 		</div>
 	</a>
 </li>

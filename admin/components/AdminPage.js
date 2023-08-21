@@ -3,7 +3,7 @@ import { Title, Tabs } from '@mantine/core';
 import styles from './AdminPage.module.css'
 import Resource from './Resource'
 import Email from './Email'
-import Edit from './Edit'
+// import Edit from './Edit'
 
 const AdminPage = () => {
   return <main className={styles.main}>
@@ -18,7 +18,8 @@ const AdminPage = () => {
 
       <Tabs.Panel value="resource"><Resource /></Tabs.Panel>
       <Tabs.Panel value="email"><Email /></Tabs.Panel>
-      <Tabs.Panel value="edit"><Edit /></Tabs.Panel>
+      <Tabs.Panel value="edit"></Tabs.Panel>
+      {/* <Edit /> */}
     </Tabs>
   </main>
 }
