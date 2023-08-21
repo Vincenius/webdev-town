@@ -10,6 +10,13 @@ const query = {
 const data = await getByQuery({ query })
 const sortedData = data.sort((a, b) => a.title.localeCompare(b.title))
 
+// const markdown = sortedData.map(item => `
+// *[${item.title}](${item.link})* - ${item.description}
+
+// `).join('')
+
+// console.log(markdown)
+
 ---
 <Layout
   title="WebDev Town | Ultimate Collection Of Websites For Creative Backgrounds"

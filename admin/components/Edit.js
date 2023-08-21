@@ -88,7 +88,7 @@ const Edit = () => {
   if (isLoading || !data) return <div>Loading...</div>
 
   return <Grid gutter={5}>
-    { data.map(d => <Resource item={d} />) }
+    { data.map(d => <Resource item={d} key={d.id} />) }
   </Grid>
 }
 
