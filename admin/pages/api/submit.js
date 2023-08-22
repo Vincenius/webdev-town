@@ -68,6 +68,7 @@ const handler = async (req, res) => {
     image: destPath.replace('../frontend/src/assets', '../assets'),
     created_at: body.created_at,
     sponsored: body.sponsored,
+    collections: body.collections,
   })
 
   await git.pull()

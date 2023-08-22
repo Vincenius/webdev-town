@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import useSWR from 'swr'
-import { TextInput, Flex, Button, Image, FileInput, Notification, Checkbox, Textarea } from '@mantine/core';
+import { TextInput, Flex, Button, Image, FileInput, Notification, Checkbox, Textarea, MultiSelect } from '@mantine/core';
+
+const collectionOptions = [
+  { value: 'backgrounds', label: 'Backgrounds' },
+];
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -16,6 +20,7 @@ const AdminPage = () => {
   const [screenshotLoading, setScreenshotLoading] = useState(false)
   const [sponsored, setSponsored] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [collections, setCollections] = useState([])
 
   const uploadFile = file => {
     const preview = URL.createObjectURL(file)
@@ -44,6 +49,7 @@ const AdminPage = () => {
         image: imagePath,
         created_at: createdAt,
         sponsored,
+        collections,
       })
     }).then(res => res.json())
 
@@ -101,6 +107,15 @@ const AdminPage = () => {
       maxRows={1}
     />
 
+    <MultiSelect
+      data={collectionOptions}
+      label="Collections"
+      placeholder="Collections"
+      mb="md"
+      value={collections}
+      onChange={setCollections}
+    />
+
     <Checkbox
       label="Sponsored"
       mb="sm"
@@ -148,6 +163,19 @@ const AdminPage = () => {
           {date.toLocaleDateString('de-DE')} ({dateData.length})
         </Button>
       }) }
+      <Button
+        m="xs" p="xs" variant='light'
+        onClick={() => {
+          const future = new Date()
+          const randomMs = Math.floor(Math.random() * 1000)
+          future.setFullYear(2099)
+          future.setUTCHours(2, 0, 0, randomMs)
+          console.log(future.toISOString())
+          setCreatedAt(future.toISOString())
+        }}
+      >
+        FUTURE
+      </Button>
     </Flex>}
 
     <Button onClick={() => submit()} loading={loading}>Submit</Button>

@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getByQuery } from '../../utils/database';
+import Newsletter from '../../components/Newsletter.astro';
+import Card from '../../components/Card.astro';
+
+const query = {
+	collections: 'backgrounds'
+};
+const data = await getByQuery({ query })
+const sortedData = data.sort((a, b) => a.title.localeCompare(b.title))
+
+// const markdown = sortedData.map(item => `
+// *[${item.title}](${item.link})* - ${item.description}
+
+// `).join('')
+
+// console.log(markdown)
+
+---
+<Layout
+  title="WebDev Town | Ultimate Collection Of Websites For Creative Backgrounds"
+  description="Spice up your website with a creative background. Use this collection of websites to generate backgrounds or to get inspiration. It includes various background generators, CSS patterns, CSS Gradients, and SVG patterns."
+  image="https://webdev.town/collections/backgrounds.png"
+>
+  <h2>Ultimate Collection Of Websites For Creative Backgrounds</h2>
+  <p style="margin-bottom: 1em;">
+    Spice up your website with a creative background. Use this collection of websites
+    to generate backgrounds or to get inspiration. It includes various background generators,
+    CSS patterns, CSS Gradients, and SVG patterns.
+  </p>
+
+  <Newsletter />
+
+  <ul role="list" class="link-card-grid">
+    { sortedData.map(elem => <Card
+      href={elem.link}
+      title={elem.title}
+      body={elem.description}
+      image={elem.image}
+      sponsored={false}
+    />)}
+  </ul>
+</Layout>

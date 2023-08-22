@@ -4,19 +4,22 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
+	description: string;
+	image: string;
 }
 
-const { title } = Astro.props;
-const description = "A curated list of web development tools, articles, libraries and more. It gets updated every day."
+const { title, description, image } = Astro.props;
+const defaultDescription = "A curated list of web development tools, articles, libraries and more. It gets updated every day."
+const desc = description || defaultDescription
 const link = "https://webdev.town"
-const imageLink = "https://webdev.town/social.png"
+const imageLink = image || "https://webdev.town/social.png"
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description}>
+		<meta name="description" content={desc}>
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
 		<meta name="generator" content={Astro.generator} />
@@ -26,18 +29,18 @@ const imageLink = "https://webdev.town/social.png"
 		<meta char-set='utf-8'></meta>
 		<link rel='icon' href='/logo.svg' />
 		<link rel=”mask-icon” href=”/logo.svg” color=”#00C6A7">
-		<meta name='description' content={description}></meta>
+		<meta name='description' content={desc}></meta>
 		<link rel='canonical' href={link} />
 		<meta name='twitter:card' content='summary_large_image' />
 		<meta name='twitter:site' content={link} />
 		<meta name='twitter:title' content={title} />
-		<meta name='twitter:description' content={description} />
+		<meta name='twitter:description' content={desc} />
 		<meta name='twitter:creator' content='@wweb_dev' />
 		<meta name='twitter:image' content={imageLink} />
 		<meta property='og:title' content={title} />
 		<meta property='og:image' content={imageLink} />
 		<meta property='og:site_name' content='workout.lol' />
-		<meta property='og:description' content={description} />
+		<meta property='og:description' content={desc} />
 		<meta property='og:url' content={link} />
 
 		<script async defer data-website-id="906bc518-8009-470f-98f1-c4cb87919edd" src="https://analytics.vincentwill.com/umami.js"></script>

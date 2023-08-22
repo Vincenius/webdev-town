@@ -7,12 +7,13 @@ interface Props {
 	sponsored: boolean;
 	favourites: string;
 	id: string;
+	internal: boolean;
 }
 import { Image } from 'astro:assets';
-const images = import.meta.glob('../assets/content/**/*')
+const images = import.meta.glob('../assets/**/*')
 
-const { id, href, title, body, image, sponsored, favourites = [] } = Astro.props;
-let domain = (new URL(href))
+const { href, title, body, image, sponsored, internal = false, favourites = [] } = Astro.props;
+let domain = internal ? href : (new URL(href))
 let imagePath = image.replace('/weekly', '../assets');
 const myImage = images[imagePath]
 	? await images[imagePath]()
@@ -21,7 +22,7 @@ const favouriteCount = favourites.length;
 ---
 
 <li class="link-card">
-	<a href={href} target="_blank" rel="noopener noreferrer" draggable="false">
+	<a href={href} target={internal ? '' : "_blank"} rel={internal ? '' : 'noopener noreferrer'} draggable="false">
 		<Image
 			src={myImage.default}
 			alt={title}
@@ -40,12 +41,12 @@ const favouriteCount = favourites.length;
 					{body}
 				</p>
 			</div>
-			<p class="host">
+			{ !internal && <p class="host">
 				{domain.hostname}
-			</p>
+			</p> }
 		</div>
 	</a>
-	<div class="favourite" data-id={id} data-test="testy">
+	<div class="favourite">
 		{favouriteCount}
 	</div>
 </li>
