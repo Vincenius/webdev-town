@@ -45,8 +45,8 @@ const handler = async (req, res) => {
         const item2 = sortedData[i+1]
 
         const baseUrl = process.env.S3_CDN
-        const image1 = `${baseUrl}/${item.image.replace('/weekly/content/', '')}`
-        const image2 = item2 && `${baseUrl}/${item2.image.replace('/weekly/content/', '')}`
+        const image1 = `${baseUrl}/${item.image.replace('/weekly/content/', '').replace('../assets/content/', '')}`
+        const image2 = item2 && `${baseUrl}/${item2.image.replace('/weekly/content/', '').replace('../assets/content/', '')}`
 
         markdown= `${markdown}
         <mj-section>

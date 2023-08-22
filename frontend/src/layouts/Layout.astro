@@ -143,6 +143,13 @@ const imageLink = image || "https://webdev.town/social.png"
 		gap: 2rem;
 		padding: 0;
 	}
+
+	.sponsored {
+		display: block;
+		opacity: 0.6;
+		margin-bottom: 0.4em;
+		margin-top: -0.6em;
+	}
 	@media (max-width: 900px) {
 		.link-card-grid {
 			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -206,6 +213,7 @@ const imageLink = image || "https://webdev.town/social.png"
 		container-type: inline-size;
 	}
 	.link-card > a {
+		position: relative;
 		width: 100%;
 		height: 100%;
 		text-decoration: none;
@@ -214,6 +222,7 @@ const imageLink = image || "https://webdev.town/social.png"
 		color: white;
 		background-color: #23262d;
 		opacity: 1;
+		padding-bottom: 1.5em;
 	}
 	.content {
 		padding: calc(1.5rem - 1px);
@@ -247,10 +256,15 @@ const imageLink = image || "https://webdev.town/social.png"
 		background: var(--accent-gradient);/* your gradient here */;
 		filter: blur(10px); /* control the blur */
 	}
-	.host {
-		margin: 1em 0 0;
+	.bottom {
+		position: absolute;
+		bottom: 1em;
+		left: 1.5rem;
 		opacity: 0.5;
 		font-size: 0.75em;
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
 	}
 
 	input[type=email], input[type=text], textarea {

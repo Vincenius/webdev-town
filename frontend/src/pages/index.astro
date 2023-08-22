@@ -1,7 +1,8 @@
 ---
+import { getImage } from "astro:assets";
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import Newsletter from '../components/Newsletter.astro';
+import Explore from '../react-components/Explore.jsx';
 import { getByQuery, getCount } from '../utils/database';
 
 const today = new Date();
@@ -15,9 +16,22 @@ const query = {
 };
 const data = await getByQuery({ query })
 const count = await getCount()
-const todayData = data
-	.filter(elem => new Date().toISOString().substring(0,10) === elem.created_at.substring(0,10))
-	.sort((a, b) => a.sponsored ? -1 : b.created_at.localeCompare(a.created_at))
+const images = import.meta.glob('../assets/content/**/*')
+const optimizedImages = await Promise.all(Object.keys(images).map(async key => {
+	if (images[key]) {
+		const myImage = await images[key]()
+		const optimizedImage = await getImage({ src: myImage.default, width: 300 })
+		return {
+			path: key,
+			image: optimizedImage.src,
+		}
+	} else {
+		return {
+			path: key,
+			image: '/social.png'
+		}
+	}
+}))
 ---
 
 <Layout title="WebDev Town | A curated list of web development tools, articles, libraries, and resources that gets updated every day.">
@@ -25,39 +39,12 @@ const todayData = data
 
 	<Newsletter />
 
-	<!-- TODO sort best -->
-	{todayData.length > 0 ? <>
-		<h3>Today</h3>
-		<ul role="list" class="link-card-grid">
-			{ todayData.map(elem => <Card
-				href={elem.link}
-				title={elem.title}
-				body={elem.description}
-				image={elem.image}
-				sponsored={elem.sponsored}
-				favourites={elem.favourites}
-			/>)}
-		</ul>
-	</> : <></>}
-
-	<h3>Last 7 Days</h3>
-	<ul role="list" class="link-card-grid">
-		{data
-			.filter(elem => new Date().toISOString().substring(0,10) !== elem.created_at.substring(0,10))
-			.map(elem => <Card
-				id={elem._id.toString()}
-				href={elem.link}
-				title={elem.title}
-				body={elem.description}
-				image={elem.image}
-				sponsored={elem.sponsored}
-				favourites={elem.favourites}
-			/>)}
-	</ul>
-
-	<a href="/explore" class="button">
-		Explore all Resources
-	</a>
+	<Explore
+		optimizedImages={optimizedImages}
+		initialData={data}
+		initialTotal={count}
+		client:load
+	/>
 </Layout>
 
 <style>
@@ -73,13 +60,13 @@ h2 {
 		color: #fff;
 		padding: 0 0.2em;
 	}
-	.button {
+	/* .button {
 		padding: 1.25rem 2rem;
 		margin: 2em auto;
 		font-size: 1.25rem;
 		min-width: 300px;
 		height: 100%;
-	}
+	} */
 
 	@media (max-width: 600px) {
 		h2 {
