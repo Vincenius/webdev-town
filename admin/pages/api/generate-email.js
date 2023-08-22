@@ -2,6 +2,10 @@ import fetch from 'node-fetch'
 import mjml2html from 'mjml'
 import { getByQuery } from '../../utils/database'
 
+const months = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 const handler = async (req, res) => {
   const { intro, fromDate, toDate } = JSON.parse(req.body)
@@ -11,6 +15,9 @@ const handler = async (req, res) => {
   const data = await getByQuery({ query })
 
   const sortedData = data.sort((a, b) => a.sponsored ? -1 : b.created_at.localeCompare(a.created_at))
+
+  const inputDate = new Date(toDate)
+  const formattedDate = `${months[inputDate.getMonth()]} ${inputDate.getDate()}, ${inputDate.getFullYear()}`;
 
   let markdown = `<mjml>
     <mj-head>
@@ -29,7 +36,7 @@ const handler = async (req, res) => {
         <mj-column>
           <mj-image src="https://webdev.town/email-header.png" width="400px" padding-bottom="20px" alt="WebDev Town" fluid-on-mobile="true"/>
           <mj-text align="center" color="#fff">
-          <h2>${new Date(fromDate).toLocaleDateString("en-US")} - ${new Date(toDate).toLocaleDateString("en-US")}</h2>
+          <h2>${formattedDate}</h2>
           </mj-text>
         </mj-column>
       </mj-section>

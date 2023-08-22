@@ -97,7 +97,7 @@ const Resource = ({ item }) => {
 }
 
 const Edit = () => {
-  const { data, error, isLoading } = useSWR('/api/data?all=true&page=4', fetcher) // all=true
+  const { data, error, isLoading } = useSWR('/api/data?all=true&page=6', fetcher) // all=true
 
   if (isLoading || !data) return <div>Loading...</div>
 

@@ -4,6 +4,7 @@ import { TextInput, Flex, Button, Image, FileInput, Notification, Checkbox, Text
 
 const collectionOptions = [
   { value: 'backgrounds', label: 'Backgrounds' },
+  { value: 'classless-css', label: 'Classless CSS' },
 ];
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
