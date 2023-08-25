@@ -1,0 +1,1 @@
+export const tagData = ['React', 'JavaScript', 'Tool', 'CSS', 'Library', 'Article', 'Design', 'Other']

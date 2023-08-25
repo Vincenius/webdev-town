@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import useSWR from 'swr'
 import { TextInput, Flex, Button, Image, FileInput, Notification, Checkbox, MultiSelect } from '@mantine/core';
+import { tagData } from '../utils/constants'
 
 const collectionOptions = [
   { value: 'backgrounds', label: 'Backgrounds' },
@@ -21,6 +22,7 @@ const AdminPage = () => {
   const [sponsored, setSponsored] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [collections, setCollections] = useState([])
+  const [tags, setTags] = useState([])
 
   const uploadFile = file => {
     const preview = URL.createObjectURL(file)
@@ -50,6 +52,7 @@ const AdminPage = () => {
         created_at: createdAt,
         sponsored,
         collections,
+        tags,
       })
     }).then(res => res.json())
 
@@ -104,6 +107,15 @@ const AdminPage = () => {
       value={description}
       onChange={(event) => setDescription(event.currentTarget.value)}
       mb="md"
+    />
+
+    <MultiSelect
+      data={tagData.map(t => ({ value: t, label: t }))}
+      label="Tags"
+      placeholder="Tags"
+      mb="xs"
+      value={tags}
+      onChange={setTags}
     />
 
     <MultiSelect

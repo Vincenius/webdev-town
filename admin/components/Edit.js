@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import useSWR from 'swr'
-import { TextInput, Checkbox, Grid, Box, Button } from '@mantine/core'
+import { TextInput, Checkbox, Grid, Box, Button, Textarea, MultiSelect } from '@mantine/core'
 import { DateInput } from '@mantine/dates'
+import { tagData } from '../utils/constants'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -11,6 +12,7 @@ const Resource = ({ item }) => {
   const [title, setTitle] = useState(item.title)
   const [description, setDescription] = useState(item.description)
   const [image, setImage] = useState(item.image)
+  const [tags, setTags] = useState(item.tags || [])
   const [sponsored, setSponsored] = useState(item.sponsored)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -28,7 +30,8 @@ const Resource = ({ item }) => {
         title: title,
         description: description,
         // image: image,
-        sponsored: sponsored
+        sponsored: sponsored,
+        tags,
       })
     }).then(() => setIsLoading(false))
   }
@@ -52,13 +55,14 @@ const Resource = ({ item }) => {
         mb="xs"
       />
 
-      <TextInput
+      <Textarea
         placeholder="Description"
         label="Description"
         withAsterisk
         value={description}
         onChange={(event) => setDescription(event.currentTarget.value)}
         mb="xs"
+        maxRows={3}
       />
 
       <TextInput
@@ -68,6 +72,15 @@ const Resource = ({ item }) => {
         value={url}
         onChange={(event) => setUrl(event.currentTarget.value)}
         mb="xs"
+      />
+
+      <MultiSelect
+        data={tagData.map(t => ({ value: t, label: t }))}
+        label="Tags"
+        placeholder="Tags"
+        mb="xs"
+        value={tags}
+        onChange={setTags}
       />
 
       <Checkbox
@@ -83,7 +96,7 @@ const Resource = ({ item }) => {
 }
 
 const Edit = () => {
-  const { data, error, isLoading } = useSWR('/api/data?all=true', fetcher)
+  const { data, error, isLoading } = useSWR('/api/data?all=true&page=1', fetcher) // page=6
 
   if (isLoading || !data) return <div>Loading...</div>
 
