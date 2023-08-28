@@ -1,9 +1,0 @@
-{
-    "apps": [
-        {
-            "name": "webdev-town-cron",
-            "script": "npm",
-            "args": "run cron"
-        }
-    ]
-}

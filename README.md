@@ -16,15 +16,12 @@ This project is split into three parts.
 
 ## frontend
 
-An Astro project that generates [https://webdev.town](https://webdev.town)
+An Next.js application that generates [https://webdev.town](https://webdev.town)
 
 ## admin
 
 A small admin interface to add resources, designed to run locally. It's a Next.js application.
 
-## api
-
-A lambda function that is called by the frontend for the search functionality.
 
 ## License
 
