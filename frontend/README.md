@@ -1,5 +1,5 @@
-# WebDev Town
+# Mantine Next Template
 
-This is the actual website you can find on [https://webdev.town](https://webdev.town).
+Get started with the template by clicking `Use this template` button on the top of the page.
 
-It's an astro app!
+[Documentation](https://mantine.dev/guides/next/)

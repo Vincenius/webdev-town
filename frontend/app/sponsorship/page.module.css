@@ -1,0 +1,38 @@
+.container h3 {
+  margin: 1.5em 0 0.25em;
+}
+
+.quotes {
+  display: flex;
+  gap: 2em;
+  font-size: 0.8em;
+  margin: 2em 0;
+}
+
+.quotes blockquote {
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 1em;
+  margin: 0;
+}
+
+.quotes blockquote p {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.quotes blockquote p span {
+  font-weight: 500;
+}
+
+.quoteImage {
+  border-radius: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .quotes {
+    flex-direction: column;
+  }
+}
