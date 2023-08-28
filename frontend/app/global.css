@@ -12,7 +12,7 @@
 body {
   font-family: system-ui, sans-serif;
   background: radial-gradient(circle, #000 0%, #232526 100%);
-  /* color: var(--light); */
+  color: #fff;
   margin: 0;
 }
 body::after {

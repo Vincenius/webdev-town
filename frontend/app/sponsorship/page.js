@@ -50,14 +50,14 @@ const Sponsorship = () => {
 
       <div className={style.quotes}>
         <blockquote>
-          ”Vincent's newsletter emphasizes quality over quantity, attracting dedicated and valuable subscribers to my newsletter. I highly recommend collaboration with him!”
+          ”Vincent&apos;s newsletter emphasizes quality over quantity, attracting dedicated and valuable subscribers to my newsletter. I highly recommend collaboration with him!”
           <p>
             <Image className={style.quoteImage} src={adam} alt="Adam" width={30} height={30} />
             <span>Adam from <a href="https://unicornclub.dev">UnicornClub.dev</a></span>
           </p>
         </blockquote>
         <blockquote>
-          ”It's my pleasure to sponsor the WebDev Town newsletter. Having my product featured in it brought relevant traffic my way and a healthy backlink.”
+          ”It&apos;s my pleasure to sponsor the WebDev Town newsletter. Having my product featured in it brought relevant traffic my way and a healthy backlink.”
           <p>
             <Image className={style.quoteImage} src={lucian} alt="Lucian" width={30} height={30} />
             <span>Lucian from <a href="https://devluc.com">devluc.com</a></span>
@@ -67,7 +67,7 @@ const Sponsorship = () => {
 
       <h3>How much is it?</h3>
       <p>
-        It's <b>$30</b> for the whole package. With 30-50 estimated clicks this makes an estimated CPC of <b>$0.60 - $1</b>.
+        It&apos;s <b>$30</b> for the whole package. With 30-50 estimated clicks this makes an estimated CPC of <b>$0.60 - $1</b>.
       </p>
 
       <p>

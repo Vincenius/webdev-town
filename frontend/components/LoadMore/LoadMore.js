@@ -10,8 +10,6 @@ const LoadMore = ({ count }) => {
   const [isLoading, setIsLoading] = useState(false)
   const resourceCount = page * 48
 
-  console.log(resourceCount, count)
-
   const loadMore = async () => {
     setIsLoading(true)
     fetch(`/api?page=${page}`)

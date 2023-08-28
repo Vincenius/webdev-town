@@ -29,7 +29,7 @@ const About = () => {
     <h2>About</h2>
     <div className={style.container}>
       <div>
-        <p>Hey I'm Vincent and I run WebDev Town and curate all the resources.</p>
+        <p>Hey I&apos;m Vincent and I run WebDev Town and curate all the resources.</p>
         <p>
           I add all the links I find interesting. My focus lies on JavaScript, CSS, React and various tools.
           I started collecting links in 2018 and published them as a weekly newsletter on my blog <a href="https://wweb.dev">wweb.dev</a>.

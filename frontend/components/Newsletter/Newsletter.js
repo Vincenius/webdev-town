@@ -31,12 +31,12 @@ const Newsletter = () => {
           <div className="ml-form-successBody row-success" style={{ display: 'none' }}>
             <div className="ml-form-successContent">
               <h4>Successfully subscribed!</h4>
-              <p>Thanks for joining the newsletter! To receive the weekly emails, please confirm your subscription. Please check your spam folder for the confirmation email if you can't find it.</p>
+              <p>Thanks for joining the newsletter! To receive the weekly emails, please confirm your subscription. Please check your spam folder for the confirmation email if you can&apos;t find it.</p>
             </div>
           </div>
         </div>
       </div>
-      <Script>
+      <Script id="ml-success">
         {`function ml_webform_success_7038689() {
           var $ = ml_jQuery || jQuery;
           $('#mlb2-7038689 .row-success').show();
@@ -44,7 +44,7 @@ const Newsletter = () => {
         }`}
       </Script>
       <Script src="https://groot.mailerlite.com/js/w/webforms.min.js?v1f25ee4b05f240a833e02c19975434a4"></Script>
-      <Script>
+      <Script id="ml-track">
           {`fetch("https://assets.mailerlite.com/jsonp/459944/forms/96558295907567305/track-view")`}
       </Script>
     </div>
