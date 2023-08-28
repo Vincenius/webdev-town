@@ -1,0 +1,16 @@
+.container {
+  gap: 2em;
+  display: flex;
+}
+.container img {
+  border-radius: 0.5em;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  .container img {
+    margin: 0 auto;
+  }
+}

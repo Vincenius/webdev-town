@@ -1,0 +1,25 @@
+.linkCardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+@media (max-width: 900px) {
+  .linkCardGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+@media (max-width: 500px) {
+  .linkCardGrid {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 366px) {
+  .linkCardGrid {
+    gap: 2rem;
+  }
+}

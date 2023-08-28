@@ -1,0 +1,125 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+  position: relative;
+}
+.logoContainer {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+}
+.logoContainer:hover {
+  opacity: 1;
+}
+.logo {
+  margin-right: 1em;
+}
+.logoContainer h1 {
+  font-size: 1em;
+  margin: 0;
+}
+.menu a {
+  text-decoration: none;
+  margin: 0 1em;
+  font-size: 0.7em;
+  color: #fff;
+}
+.menu a:last-child {
+  margin-right: 0;
+}
+
+.menu .submit {
+  padding: .5em;
+  border: 1px solid var(--accent-light);
+  border-radius: .5em;
+  color: var(--accent-light);
+}
+
+
+/* menu icon */
+
+.menuIcon {
+  cursor: pointer;
+  display: inline-block;
+  padding: .5em;
+  position: relative;
+  user-select: none;
+  display: none;
+}
+
+.menuIcon .navicon {
+  background: #fff;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.menuIcon .navicon:before,
+.menuIcon .navicon:after {
+  background: #fff;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.menuIcon .navicon:before {
+  top: 5px;
+}
+
+.menuIcon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+.menuBtn {
+  display: none;
+}
+
+.menuBtn:checked ~ .menu {
+  max-height: 240px;
+}
+
+.menuBtn:checked ~ .menuIcon .navicon {
+  background: transparent;
+}
+
+.menuBtn:checked ~ .menuIcon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.menuBtn:checked ~ .menuIcon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.menuBtn:checked ~ .menuIcon:not(.steps) .navicon:before,
+.menuBtn:checked ~ .menuIcon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+@media (max-width: 600px) {
+  .menu {
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 2em;
+    background: #444;
+    border-radius: .5em;
+  }
+  .menu a, .menu a:last-child {
+    display: block;
+    text-align: right;
+    margin: 1em;
+  }
+  .menuIcon {
+    display: block;
+  }
+}

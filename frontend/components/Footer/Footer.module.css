@@ -1,0 +1,36 @@
+.footer {
+  margin-top: 3em;
+  padding: 1em 0;
+  border-top: 1px solid rgba(255,255,255,0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  margin-right: 1em;
+}
+.links a {
+  text-decoration: none;
+  display: block;
+  font-size: 0.8em;
+  padding: 0.2em 0;
+}
+
+.socialContainer {
+  display: flex;
+  gap: 1.2em;
+  margin-bottom: 1em;
+}
+.socialContainer a {
+  color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+  .logoContainer {
+    font-size: 0.8em;
+  }
+}

@@ -1,0 +1,29 @@
+.textGradient {
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  background-position: 0%;
+}
+
+.container h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 0.75em;
+}
+.container h2 mark {
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 0 0.2em;
+}
+.filterBar {
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .container h2 {
+    font-size: 2rem;
+  }
+}

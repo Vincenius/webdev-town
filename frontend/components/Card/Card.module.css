@@ -1,0 +1,83 @@
+.card {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1px;
+  background-color: #23262d;
+  background-image: none;
+  background-size: 400%;
+  border-radius: var(--border-radius);
+  background-position: 100%;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 300px;
+  container-type: inline-size;
+}
+.card > a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  line-height: 1.4;
+  border-radius: 8px;
+  color: white;
+  background-color: #23262d;
+  opacity: 1;
+  position: relative;
+}
+.card:not(.no-hover):hover::after {
+  content: "";
+  position: absolute;
+  inset: -5px; /* control the spread */
+  z-index: -1; /* place the element behind */
+  background: var(--accent-gradient);/* your gradient here */;
+  filter: blur(10px); /* control the blur */
+}
+.host {
+  opacity: 0.5;
+  font-size: 0.75em;
+  padding: 0 calc(1.5rem - 1px);
+  margin: 1em 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+.image {
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+.content {
+  padding: calc(1.5rem - 1px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+}
+.card h3 {
+  margin: 0;
+  font-size: 1.15em;
+}
+
+.date {
+  font-size: .9em;
+}
+
+@container (max-width: 250px) {
+  .content {
+    font-size: 0.75em;
+    padding: calc(1rem - 1px);
+  }
+  .host {
+    font-size: 0.6em;
+    padding: 0 calc(1rem - 1px);
+  }
+}
