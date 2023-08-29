@@ -34,7 +34,7 @@ const handler = async (req, res) => {
       ? '.png' // fallback for urls without image ending (usually from github)
       : body.image.split('.').pop();
   const fileName = `${new Date().toISOString()}-${body.title.replace(/[^a-zA-Z0-9]/g, '')}.${fileExt}`
-  const path = `../frontend/src/assets/content/0_new/${fileName}` // directly store in frontend directory
+  const path = `../frontend/public/content/0_new/${fileName}` // directly store in frontend directory
 
   if (body.image.startsWith('http')) {
     await download({ url: body.image, path })
@@ -65,7 +65,7 @@ const handler = async (req, res) => {
     title: body.title,
     description: body.description,
     link: body.url,
-    image: destPath.replace('../frontend/src/assets', '../assets'),
+    image: destPath.replace('../frontend/public/', '/'),
     created_at: body.created_at,
     sponsored: body.sponsored,
     collections: body.collections,
