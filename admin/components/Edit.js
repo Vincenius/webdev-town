@@ -40,7 +40,10 @@ const Resource = ({ item }) => {
     <Box m="xs" p="xs" bg="gray" style={{ borderRadius: '0.2em' }}>
       <DateInput
         value={createdAt}
-        onChange={setCreatedAt}
+        onChange={date => {
+          date.setUTCHours(2, 0, 0, 0) // include selected day
+          setCreatedAt(date)
+        }}
         label="Date input"
         placeholder="Date input"
         mb="xs"
@@ -96,7 +99,7 @@ const Resource = ({ item }) => {
 }
 
 const Edit = () => {
-  const { data, error, isLoading } = useSWR('/api/data?all=true&page=1', fetcher) // page=6
+  const { data, error, isLoading } = useSWR('/api/data?all=true&page=0', fetcher) // page=6
 
   if (isLoading || !data) return <div>Loading...</div>
 
