@@ -30,6 +30,26 @@ export const getByQuery = async ({ query, limit = 48, page = 0 }) => {
   return result
 }
 
+export const getByAggregation = async ({ aggregation, limit = 48, page = 0 }) => {
+  let result = []
+  const dbClient = await connectDb()
+
+  try {
+    const db = dbClient.db('weekly')
+    const collection = db.collection('weekly')
+
+    result = await collection
+      .aggregate(aggregation)
+      .toArray()
+  } catch (e) {
+    console.log('error', e)
+  }
+
+  await dbClient.close()
+
+  return result
+}
+
 export const getCount = async () => {
   let result = 0
   const dbClient = await connectDb()
