@@ -71,6 +71,14 @@
   font-size: .9em;
 }
 
+.sponsored {
+  display: block;
+  opacity: 0.6;
+  margin-bottom: 0.4em;
+  margin-top: -0.6em;
+  FONT-SIZE: 0.75em;
+}
+
 @container (max-width: 250px) {
   .content {
     font-size: 0.75em;
