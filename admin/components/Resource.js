@@ -155,7 +155,7 @@ const AdminPage = () => {
 
     { isLoading && <div>Loading....</div> }
     { !isLoading && <Flex wrap="wrap" mb="md">
-      { Array.from(Array(14).keys()).map((i) => {
+      { Array.from(Array(18).keys()).map((i) => {
         const date = new Date()
         const randomMs = Math.floor(Math.random() * 1000)
         date.setDate(date.getDate() + i)
