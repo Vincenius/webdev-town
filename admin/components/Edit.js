@@ -99,13 +99,17 @@ const Resource = ({ item }) => {
 }
 
 const Edit = () => {
-  const { data, error, isLoading } = useSWR('/api/data?all=true&page=0', fetcher) // page=6
+  const [page, setPage] = useState(0)
+  const { data, error, isLoading } = useSWR(`/api/data?all=true&page=${page}`, fetcher)
 
   if (isLoading || !data) return <div>Loading...</div>
 
-  return <Grid gutter={5}>
-    { data.map(d => <Resource item={d} key={d.id} />) }
-  </Grid>
+  return <div>
+    <Grid gutter={5}>
+      { data.map(d => <Resource item={d} key={d.id} />) }
+    </Grid>
+    <Button onClick={() => setPage(page+1)}>Older</Button>
+  </div>
 }
 
 export default Edit
