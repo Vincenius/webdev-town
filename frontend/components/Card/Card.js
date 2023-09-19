@@ -7,7 +7,7 @@ const LinkComp = ({ href, internal, children }) => internal
   ? <Link href={href}>{children}</Link>
   : <a href={href} target="_blank" rel="noopener noreferrer" draggable="false">{children}</a>
 
-const Card = ({ href, title, body, image, internal, date }) => {
+const Card = ({ href, title, body, image, internal, date, sponsored }) => {
   const domain = !internal
     ? (new URL(href))
     : ''
@@ -29,6 +29,7 @@ const Card = ({ href, title, body, image, internal, date }) => {
       />
       <div className={style.content}>
         <div>
+          {sponsored && <span className={style.sponsored}>Sponsored</span>}
           <h3>
             {title}
             <span>&rarr;</span>
