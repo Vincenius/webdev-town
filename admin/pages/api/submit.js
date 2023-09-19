@@ -69,6 +69,7 @@ const handler = async (req, res) => {
     created_at: body.created_at,
     sponsored: body.sponsored,
     collections: body.collections,
+    tags: body.tags,
   })
 
   await git.pull()
