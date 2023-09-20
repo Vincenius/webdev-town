@@ -48,6 +48,7 @@ async function getData(tag) {
     created_at: {
       $lte: today.toISOString(),
     },
+    sponsored: { $ne: true },
     tags: tag,
   };
 
@@ -80,7 +81,7 @@ export default async function HomePage({ params }) {
 
     <CardGrid data={data} />
 
-    <LoadMore count={count} tag={tag} />
+    <LoadMore count={count} tag={tag.tag} />
   </div>;
 }
 

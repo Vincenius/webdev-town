@@ -10,6 +10,7 @@ export async function GET(request) {
     created_at: {
       $lte: today.toISOString(),
     },
+    sponsored: { $ne: true },
   };
   const tagQuery = tag? { tags: tag } : {};
   const query = {
