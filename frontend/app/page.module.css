@@ -19,6 +19,9 @@
   color: #fff;
   padding: 0 0.2em;
 }
+.container h3 {
+  color: #fff;
+}
 .filterBar {
   display: inline-block;
 }
