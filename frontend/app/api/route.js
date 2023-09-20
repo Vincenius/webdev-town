@@ -3,13 +3,19 @@ import { getByQuery } from '../../utils/database';
 
 export async function GET(request) {
   const page = parseInt(request.nextUrl.searchParams.get('page') || '1', 10)
+  const tag = request.nextUrl.searchParams.get('tag') || ''
   const today = new Date();
-  const query = {
+
+  const defaultQuery = {
     created_at: {
       $lte: today.toISOString(),
     },
-    sponsored: { $ne: true },
   };
+  const tagQuery = tag? { tags: tag } : {};
+  const query = {
+    ...defaultQuery,
+    ...tagQuery,
+  }
 
   // const query = [
   //   search && {

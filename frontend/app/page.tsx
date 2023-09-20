@@ -4,7 +4,6 @@ import style from './page.module.css'
 import { getByAggregation, getByQuery, getCount } from '../utils/database';
 import Newsletter from '../components/Newsletter/Newsletter';
 import CardGrid from '../components/Card/CardGrid';
-import LoadMore from '../components/LoadMore/LoadMore';
 
 const tags = {
   "Latest": "Latest",
@@ -25,7 +24,7 @@ async function getData() {
       $lte: today.toISOString(),
     },
   };
-  const latest = await getByQuery({ query, limit: 3 })
+  const latest = await getByQuery({ query, limit: 6 })
 
   const aggregation = [
     {
@@ -55,7 +54,7 @@ async function getData() {
         _id: 0,
         tag: "$_id",
         elements: {
-          $slice: ["$elements", 3]  // Get the first three elements for each tag
+          $slice: ["$elements", 6]  // Get the first three elements for each tag
         }
       }
     },
@@ -88,16 +87,14 @@ export default async function HomePage() {
 
     { Object.entries(tags).map(([key, value]) => {
       const { elements } = data.find(i => i.tag === key)
-      return <section key={key}>
+      return <section key={key} style={{ marginTop: key === 'Latest' ? '0': '4em' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Title order={3}>{value}</Title>
-          <Link href={`/${key.toLowerCase()}`}>Show all</Link>
+          <Title order={3} size={30}>{value}</Title>
+          <Link href={`/resources/${key === 'Latest' ? '' : key.toLowerCase()}`}>Show all</Link>
         </div>
         <CardGrid data={elements} />
       </section>
     }) }
-
-    {/* <LoadMore count={count} /> */}
   </div>;
 }
 

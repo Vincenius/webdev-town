@@ -50,7 +50,7 @@ export const getByAggregation = async ({ aggregation, limit = 48, page = 0 }) =>
   return result
 }
 
-export const getCount = async () => {
+export const getCount = async (additionalQuery = {}) => {
   let result = 0
   const dbClient = await connectDb()
 
@@ -63,7 +63,8 @@ export const getCount = async () => {
       sponsored: { $ne: true },
       created_at: {
         $lte: today.toISOString(),
-      }
+      },
+      ...additionalQuery,
     };
     result = await collection.countDocuments(query)
   } catch (e) {

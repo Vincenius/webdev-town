@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Button } from '@mantine/core'
 import CardGrid from '../Card/CardGrid'
 
-const LoadMore = ({ count }) => {
+const LoadMore = ({ count, tag }) => {
   const [data, setData] = useState([])
   const [page, setPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
@@ -12,7 +12,7 @@ const LoadMore = ({ count }) => {
 
   const loadMore = async () => {
     setIsLoading(true)
-    fetch(`/api?page=${page}`)
+    fetch(`/api?page=${page}&${tag ? '&tag=' + tag : ''}`)
       .then(res => res.json())
       .then(result => {
         setData([...data, ...result])

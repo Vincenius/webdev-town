@@ -12,6 +12,7 @@
   line-height: 1.2;
   text-align: left;
   margin-bottom: 0.75em;
+  color: #fff;
 }
 .container h2 mark {
   background: var(--accent-gradient);
