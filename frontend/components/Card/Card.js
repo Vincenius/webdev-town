@@ -43,7 +43,7 @@ const Card = ({ href, title, body, image, internal, date, sponsored }) => {
         { date && <time className={style.date}>{new Date(date).toLocaleDateString('en-US')}</time> }
         { !date && <span></span> }
 
-        <span>{domain.hostname}</span>
+        <span>{domain.hostname.split('.').slice(-2).join('.')}</span>
       </p> }
     </LinkComp>
   </div>

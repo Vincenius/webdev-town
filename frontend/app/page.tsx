@@ -1,4 +1,5 @@
 import { Title, Box } from '@mantine/core'
+import Link from 'next/link'
 import style from './page.module.css'
 import { getByAggregation, getByQuery, getCount } from '../utils/database';
 import Newsletter from '../components/Newsletter/Newsletter';
@@ -90,7 +91,7 @@ export default async function HomePage() {
       return <section key={key}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Title order={3}>{value}</Title>
-          <a>Show all</a>
+          <Link href={`/${key.toLowerCase()}`}>Show all</Link>
         </div>
         <CardGrid data={elements} />
       </section>

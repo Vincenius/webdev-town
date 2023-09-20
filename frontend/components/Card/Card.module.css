@@ -44,6 +44,7 @@
   justify-content: space-between;
   align-items: center;
   position: absolute;
+  flex-wrap: wrap;
   bottom: 0;
 }
 .image {
