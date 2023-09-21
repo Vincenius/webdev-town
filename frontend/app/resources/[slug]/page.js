@@ -48,7 +48,7 @@ async function getData(tag) {
     created_at: {
       $lte: today.toISOString(),
     },
-    sponsored: { $ne: true },
+    // sponsored: { $ne: true },
     tags: tag,
   };
 
