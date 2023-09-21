@@ -45,7 +45,7 @@ const Sponsorship = () => {
           <li>CTR <b>~15%</b></li>
         </ul>
       </div>
-      <div>🌐 A link on the landing page of <a href="https://webdev.town/" target="_blank" rel="noopener noreferrer">WebDev Town</a> for one week.</div>
+      <div>🌐 A permanent link on the website of <a href="https://webdev.town/" target="_blank" rel="noopener noreferrer">WebDev Town</a>.</div>
       <div>🐤 A shoutout on <a href="https://twitter.com/wweb_dev/status/1585143891938115584" target="_blank" rel="noopener noreferrer">Twitter</a> to <b>900+</b> followers</div>
 
       <div className={style.quotes}>
