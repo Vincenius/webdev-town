@@ -1,10 +1,8 @@
-import fetch from 'node-fetch'
 import mjml2html from 'mjml'
 import { getByQuery } from '../../utils/database'
 
-
 const handler = async (req, res) => {
-  const { intro, fromDate, toDate } = JSON.parse(req.body)
+  const { intro, fromDate, toDate, number } = JSON.parse(req.body)
   const query = {
     created_at: { $lte: toDate, $gte: fromDate }
   };
@@ -22,14 +20,15 @@ const handler = async (req, res) => {
         a {
           color: #017a8c;
         }
+        .bg > table { background: linear-gradient(#2764be, #00C6A7) !important };
       </mj-style>
     </mj-head>
     <mj-body>
-      <mj-section background-color="#232526">
+      <mj-section css-class="bg" border-radius="0 0 10px 10px">
         <mj-column>
-          <mj-image src="https://webdev.town/email-header.png" width="400px" padding-bottom="20px" alt="WebDev Town" fluid-on-mobile="true"/>
-          <mj-text align="center" color="#fff">
-          <h2>${new Date(fromDate).toLocaleDateString("en-US")} - ${new Date(toDate).toLocaleDateString("en-US")}</h2>
+          <mj-image src="https://webdev.town/email-header-v2.png" width="400px" padding-bottom="20px" alt="WebDev Town" fluid-on-mobile="true"/>
+          <mj-text align="center" color="#1d1d1d">
+            <h2>Web Development Resources #${number}</h2>
           </mj-text>
         </mj-column>
       </mj-section>

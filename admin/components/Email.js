@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Textarea, Flex } from '@mantine/core';
+import { Button, Textarea, Flex, NumberInput } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 
 const defaultText = 'If you have any feedback or you want to share tools and resources for the next newsletter - just answer to this email.'
@@ -11,6 +11,7 @@ const Email = () => {
   const [loading, setLoading] = useState(false)
   const [fromDate, setFromDate] = useState(null) // todo read from local storage
   const [toDate, setToDate] = useState(today)
+  const [number, setNumber] = useState(166)
 
   const getEmail = async () => {
     setLoading(true)
@@ -20,6 +21,7 @@ const Email = () => {
         intro: intro.replace(/(?:\r\n|\r|\n)/g, '<br>'),
         fromDate: fromDate.toISOString(),
         toDate: toDate.toISOString(),
+        number,
       })
     }).then(res => res.json())
 
@@ -57,6 +59,11 @@ const Email = () => {
       placeholder="To date"
       maw={400}
       mb="md"
+    />
+    <NumberInput
+      label="Number"
+      value={number}
+      onChange={val => setNumber(val)}
     />
   </Flex>
 
