@@ -29,6 +29,13 @@ const collections = [{
   image: "../assets/collections/backgrounds.png",
   sponsored: false,
   internal: true,
+}, {
+  link: "/collections/icons",
+  title: "A Curated List of Websites For Free Icon Sets",
+  description: "A handpicked selection of websites that provide free icons, ranging from simple and elegant to intricate and detailed.",
+  image: "../assets/collections/icons.png",
+  sponsored: false,
+  internal: true,
 }]
 
 const Collections = () => {

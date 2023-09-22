@@ -5,6 +5,7 @@ import { tagData } from '../utils/constants'
 
 const collectionOptions = [
   { value: 'backgrounds', label: 'Backgrounds' },
+  { value: 'icons', label: 'Icons' },
 ];
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())

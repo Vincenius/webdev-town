@@ -4,10 +4,10 @@ import CardGrid from '../../../components/Card/CardGrid'
 import { getByQuery } from '../../../utils/database';
 import { openGraph, twitter } from '../../../utils/metadata';
 
-const title = "WebDev Town | Ultimate Collection Of Websites For Creative Backgrounds"
-const description = "Spice up your website with a creative background. Use this collection of websites to generate backgrounds or to get inspiration. It includes various background generators, CSS patterns, CSS Gradients, and SVG patterns."
-const url = "https://webdev.town/collections/backgrounds"
-const image = "https://webdev.town/collections/backgrounds-social.png"
+const title = "WebDev Town | A Curated List Of Websites For Free Icon Sets"
+const description = "A handpicked selection of websites that provide free icons, ranging from simple and elegant to intricate and detailed."
+const url = "https://webdev.town/collections/icons"
+const image = "https://webdev.town/collections/icons-social.png"
 
 export const metadata = {
   title,
@@ -35,7 +35,7 @@ export const metadata = {
 
 async function getData() {
   const query = {
-    collections: 'backgrounds'
+    collections: 'icons'
   };
   const data = await getByQuery({ query })
   const sortedData = data.sort((a, b) => a.title.localeCompare(b.title))
@@ -46,11 +46,10 @@ const Backgrounds = async () => {
   const data = await getData()
 
   return <div>
-    <h2>Ultimate Collection Of Websites For Creative Backgrounds</h2>
+    <h2>A Curated List Of Websites For Free Icon Sets</h2>
     <p style={{ marginBottom: '1em' }}>
-      Spice up your website with a creative background. Use this collection of websites
-      to generate backgrounds or to get inspiration. It includes various background generators,
-      CSS patterns, CSS Gradients, and SVG patterns.
+      Below you will find a handpicked selection of websites that provide free icons.
+      With options ranging from simple and elegant to intricate and detailed, these platforms offer a diverse array of icons that can add that extra visual appeal to your work.
     </p>
 
     <Newsletter />
