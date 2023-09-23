@@ -45,6 +45,8 @@ async function getData() {
 const Backgrounds = async () => {
   const data = await getData()
 
+  // console.log(data.map(item => `[*${item.title}*](${item.link}) \- ${item.description}`).join('\n\n'))
+
   return <div>
     <h2>A Curated List Of Websites For Free Icon Sets</h2>
     <p style={{ marginBottom: '1em' }}>
