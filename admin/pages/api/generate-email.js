@@ -80,9 +80,9 @@ const handler = async (req, res) => {
       markdown = `${markdown}
         <mj-section>
           <mj-column>
-            <mj-text>You can support this newsletter by</mj-text>
+            <mj-text>Enjoyed this newsletter? You can support me by</mj-text>
+            <mj-text>💌 replying and letting me know</mj-text>
             <mj-text>💸 booking a <a href="https://webdev.town/sponsorship/">sponsored post</a></mj-text>
-            <mj-text>☕️ donating via <a href="https://ko-fi.com/wweb_dev">Ko-Fi</a></mj-text>
             <mj-text>🚀 helping me grow by sharing it with your friends and colleagues</mj-text>
             <mj-text></mj-text>
             <mj-text line-height="0">Cheers,</mj-text>

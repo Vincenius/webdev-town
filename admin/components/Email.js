@@ -30,11 +30,30 @@ const Email = () => {
     }, function(err) {
       console.error('Async: Could not copy text: ', err);
     });
-    // todo success message
-    // todo store tomorrow date in local storage
 
     setLoading(false)
   }
+
+    const getMarkdown = async () => {
+      setLoading(true)
+      const { result } = await fetch('/api/generate-markdown', {
+        method: 'POST',
+        body: JSON.stringify({
+          intro: intro.replace(/(?:\r\n|\r|\n)/g, '<br>'),
+          fromDate: fromDate.toISOString(),
+          toDate: toDate.toISOString(),
+          number,
+        })
+      }).then(res => res.json())
+
+      navigator.clipboard.writeText(result).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+      }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+      });
+
+      setLoading(false)
+    }
 
   return <div>
   <Flex>
@@ -75,7 +94,10 @@ const Email = () => {
       value={intro}
       onChange={e => setIntro(e.currentTarget.value)}
     />
-    <Button onClick={getEmail} loading={loading}>Generate Email</Button>
+    <Flex>
+      <Button onClick={getEmail} loading={loading} mr="md">Generate Email</Button>
+      <Button onClick={getMarkdown} loading={loading}>Generate Markdown</Button>
+    </Flex>
   </div>
 }
 
