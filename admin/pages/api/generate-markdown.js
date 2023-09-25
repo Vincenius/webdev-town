@@ -28,13 +28,14 @@ markDown = `${markDown}
 
 ______
 
+
 _Enjoyed this newsletter? You can support me by:_
+
+📧 Subscribing to the weekly email newsletter on [WebDev Town](https://webdev.town/)
 
 💬 commenting and letting me know
 
 💸 booking a [sponsored post](https://webdev.town/sponsorship/)
-
-🚀 helping me grow by sharing it with your friends and colleagues
 
 
 Cheers,
