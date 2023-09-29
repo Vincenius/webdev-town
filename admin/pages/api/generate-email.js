@@ -101,7 +101,7 @@ const handler = async (req, res) => {
 
   const htmlOutput = mjml2html(markdown)
 
-  res.status(200).json({ result: htmlOutput.html })
+  res.status(200).json({ result: markdown })
 }
 
 export default handler

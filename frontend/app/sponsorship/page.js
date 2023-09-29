@@ -38,9 +38,9 @@ const Sponsorship = () => {
       </p>
 
       <h3>What does it include?</h3>
-      <div>📧 A prominent spot in the <a href="https://preview.mailerlite.com/h2i0o3y2o2" target="_blank" rel="noopener noreferrer">E-Mail newsletter</a>
+      <div>📧 A prominent, native spot in the <a href="https://preview.mailerlite.com/h2i0o3y2o2" target="_blank" rel="noopener noreferrer">email newsletter</a>
         <ul>
-          <li><b>700+</b> subscribers</li>
+          <li><b>800+</b> subscribers</li>
           <li><b>~ 45%-50%</b> Open rate</li>
           <li>CTR <b>~15%</b></li>
         </ul>
