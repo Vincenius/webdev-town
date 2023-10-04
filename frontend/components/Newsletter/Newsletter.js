@@ -11,7 +11,7 @@ const Newsletter = () => {
         <div className="ml-form-embedWrapper embedForm">
           <div className="ml-form-embedBody ml-form-embedBodyDefault row-form">
             <div className="ml-form-embedContent">
-              <p>Never miss a useful website again. Join <span className={style.textGradient}>800+</span> devs and receive a <u>weekly</u> summary straight into your inbox.</p>
+              <p>Never miss a useful website again. Join <span className={style.textGradient}>1000+</span> devs and receive a <u>weekly</u> summary straight into your inbox.</p>
             </div>
             <form className="ml-block-form" action="https://assets.mailerlite.com/jsonp/459944/forms/96558295907567305/subscribe" data-code="r2f1v0" method="post" target="_blank">
               <div className={style.mlFormContent}>
