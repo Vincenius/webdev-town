@@ -3,7 +3,7 @@ import Image from 'next/image'
 import style from './page.module.css'
 import adam from '../../public/adam.jpg'
 import lucian from '../../public/lucian.jpg'
-import { openGraph, twitter } from '../../utils/metadata';
+import { openGraph, twitter } from '../../utils/metadata'
 
 const title = "WebDev Town | Sponsorship"
 const description = "Promote your product, ebook, or SaaS on WebDev Town."
@@ -37,16 +37,19 @@ const Sponsorship = () => {
         Pass me an email at <a href="mailto:info@webdev.town">info@webdev.town</a> if you are interested.
       </p>
 
+      {/* BOOK A SPOT */}
+
       <h3>What does it include?</h3>
       <div>📧 A prominent, native spot in the <a href="https://preview.mailerlite.com/h2i0o3y2o2" target="_blank" rel="noopener noreferrer">email newsletter</a>
         <ul>
-          <li><b>1000+</b> subscribers</li>
+          <li><b>1100+</b> subscribers</li>
           <li><b>~ 45%-50%</b> Open rate</li>
           <li>CTR <b>~15%</b></li>
         </ul>
       </div>
       <div>🌐 A permanent link on the website of <a href="https://webdev.town/" target="_blank" rel="noopener noreferrer">WebDev Town</a>.</div>
       <div>🐤 A shoutout on <a href="https://twitter.com/wweb_dev/status/1585143891938115584" target="_blank" rel="noopener noreferrer">Twitter</a> to <b>900+</b> followers</div>
+      <div>🖥 A link on Dev.to with around 250-400 clicks in the first week</div>
 
       <div className={style.quotes}>
         <blockquote>
