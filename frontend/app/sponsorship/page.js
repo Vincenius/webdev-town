@@ -37,7 +37,7 @@ const Sponsorship = () => {
         Pass me an email at <a href="mailto:info@webdev.town">info@webdev.town</a> if you are interested.
       </p>
 
-      {/* BOOK A SPOT */}
+      {/* Check Availability */}
 
       <h3>What does it include?</h3>
       <div>📧 A prominent, native spot in the <a href="https://preview.mailerlite.com/h2i0o3y2o2" target="_blank" rel="noopener noreferrer">email newsletter</a>
@@ -76,6 +76,8 @@ const Sponsorship = () => {
       <p>
         If you have any questions feel free to reach out at <a href="mailto:info@webdev.town">info@webdev.town</a> or <a href="https://twitter.com/wweb_dev" target="_blank" rel="noopener noreferrer">Twitter</a>.
       </p>
+
+      {/* Check Availability */}
     </div>
 }
 
