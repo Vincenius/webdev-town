@@ -13,6 +13,7 @@ const Navigation = () => {
     <input className={style.menuBtn} type="checkbox" id="menu-btn" />
     <label className={style.menuIcon} htmlFor="menu-btn"><span className={style.navIcon}></span></label>
     <div className={style.menu}>
+      <Link href="/sponsorship">Sponsor</Link>
       <Link href="/collections">Collections</Link>
       <Link href="/submit" className={style.submit}>Submit Resource</Link>
     </div>
