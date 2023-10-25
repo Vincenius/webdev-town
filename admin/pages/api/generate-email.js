@@ -84,13 +84,6 @@ const handler = async (req, res) => {
             <mj-text line-height="0">Vincent from <a href="https://webdev.town">WebDev Town</a></mj-text>
           </mj-column>
         </mj-section>
-        <mj-section>
-          <mj-column>
-            <mj-text align="center">
-            <a href="{$unsubscribe}">Unsubscribe</a><span> | </span><a href="{$url}">View in browser</a><span> | </span><a href="{$forward}">Forward</a>
-            </mj-text>
-          </mj-column>
-        </mj-section>
       </mj-body>
     </mjml>`
 
