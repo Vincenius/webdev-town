@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: any }) {
         <ColorSchemeScript defaultColorScheme="dark" />
         <link rel="shortcut icon" href="/logo.svg" />
         <script async defer data-website-id="906bc518-8009-470f-98f1-c4cb87919edd" src="https://analytics.vincentwill.com/umami.js"></script>
-        <script async src="https://js.sparkloop.app/team_469ac6a0a2c9.js" data-sparkloop></script>
+        {/* <script async src="https://js.sparkloop.app/team_469ac6a0a2c9.js" data-sparkloop></script> */}
       </head>
       <body>
         <main>

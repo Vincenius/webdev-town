@@ -7,10 +7,6 @@
   background-position: 0%;
 }
 
-.mlSubscribeForm h4 {
-  margin-bottom: 0.5em;
-  color: var(--accent-light)
-}
 .mlSubscribeForm {
   margin: 1rem 0 4rem;
 }
@@ -23,18 +19,14 @@
   color: #fff;
 }
 
-.mlSubscribeForm form {
-  display: flex;
-}
-
-.mlFormContent {
+.emailInput {
   width: 50%;
   min-width: 200px;
   margin-right: 0.5em;
 }
 
 @media (max-width: 400px) {
-  .mlFormContent {
+  .emailInput {
     min-width: 150px;
   }
 }
