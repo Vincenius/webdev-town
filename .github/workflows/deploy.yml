@@ -21,5 +21,7 @@ jobs:
       - name: test connection
         run: |
           eval $(ssh-agent -s)
-          ssh -v -i ~/.ssh/private.pem -tt ubuntu@3.79.135.33
+          ssh-keygen -p -m PEM -f ~/.ssh/private.pem
+          ssh-add ~/.ssh/private.pem
+          ssh -v -tt -i ~/.ssh/private.pem ubuntu@3.79.135.33
           pm2 list
