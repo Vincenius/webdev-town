@@ -8,18 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Create SSH key
+      - name: Create SSH key files
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.pem
-          sudo chmod 400 ~/.ssh/private.pem
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        shell: bash
+          echo "$PRIVATE_KEY_CONTENT" > ~/.ssh/private.pem
+          chmod 400 ~/.ssh/private.pem
+          echo "$KNOWN_HOSTS_CONTENT" > ~/.ssh/known_hosts
         env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-      - name: test connection
+          PRIVATE_KEY_CONTENT: ${{ secrets.SSH_PRIVATE_KEY }}
+          KNOWN_HOSTS_CONTENT: ${{ secrets.SSH_KNOWN_HOSTS }}
+
+      - name: SSH into server and run commands
         run: |
-          eval $(ssh-agent -s)
-          ssh -i /Users/vincent/.ssh/ec2-key.pem -tt ubuntu@3.79.135.33
-          pm2 list
+          ssh -i ~/.ssh/private.pem ubuntu@3.79.135.33 "pm2 list"
