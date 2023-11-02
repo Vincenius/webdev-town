@@ -11,16 +11,15 @@ jobs:
       - name: Create SSH key
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ../private.pem
-          sudo chmod 400 ../private.pem
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.pem
+          sudo chmod 400 ~/.ssh/private.pem
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           eval $(ssh-agent -s)
-          ssh-add $SSH_KEY_PATH
+          ssh-add ~/.ssh/private.pem
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-          SSH_KEY_PATH: ${{ github.workspace }}/../private.pem
       - name: test connection
         run: |
           ssh ubuntu@3.79.135.33
