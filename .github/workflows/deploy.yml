@@ -15,7 +15,7 @@ jobs:
           sudo chmod 600 ../private.pem
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           eval $(ssh-agent -s)
-          ssh-add ~/.ssh/private.pem
+          ssh-add "$SSH_KEY_PATH"
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
