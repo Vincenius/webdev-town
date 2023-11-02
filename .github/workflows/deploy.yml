@@ -11,7 +11,7 @@ jobs:
       - name: Create SSH key
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa.pem
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.pem
           sudo chmod 400 ~/.ssh/private.pem
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         shell: bash
