@@ -48,7 +48,6 @@ const Sponsorship = () => {
         </ul>
       </div>
       <div>🌐 A permanent link on the website of <a href="https://webdev.town/" target="_blank" rel="noopener noreferrer">WebDev Town</a>.</div>
-      <div>🐤 A shoutout on <a href="https://twitter.com/wweb_dev/status/1585143891938115584" target="_blank" rel="noopener noreferrer">Twitter</a> to <b>900+</b> followers</div>
       <div>🖥 A link on Dev.to with around 250-400 clicks in the first week</div>
 
       <div className={style.quotes}>
