@@ -20,3 +20,4 @@ jobs:
       - name: SSH into the server and run a command
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@3.79.135.33 "echo Hello from the server!"
+
