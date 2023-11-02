@@ -15,6 +15,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.pem
           sudo chmod 400 ~/.ssh/private.pem
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chown -R runner:runner ~/.ssh/
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
