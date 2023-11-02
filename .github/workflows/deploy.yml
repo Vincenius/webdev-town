@@ -16,12 +16,10 @@ jobs:
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           eval $(ssh-agent -s)
           ssh-add "$SSH_KEY_PATH"
+          ssh ubuntu@3.79.135.33
+          pm2 list
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.pem
-      - name: test connection
-        run: |
-          ssh ubuntu@3.79.135.33
-          pm2 list
