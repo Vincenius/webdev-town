@@ -22,7 +22,7 @@ jobs:
       - name: test connection
         run: |
           eval $(ssh-agent -s)
-          ssh-keygen -p -m PEM -f ~/.ssh/private.pem
-          ssh-add ~/.ssh/private.pem
-          ssh -v -tt -i ~/.ssh/private.pem ubuntu@3.79.135.33
+          ssh-keygen -p -m PEM -f "$SSH_KEY_PATH"
+          ssh-add "$SSH_KEY_PATH"
+          ssh -v -tt -i "$SSH_KEY_PATH" ubuntu@3.79.135.33
           pm2 list
