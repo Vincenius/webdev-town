@@ -10,19 +10,16 @@ jobs:
     steps:
       - name: Create SSH key
         run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ../private.key
-          sudo chmod 600 ../private.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          ssh-keyscan -H webdev.town > ~/.ssh/known_hosts
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       - name: test connection
         run: |
           eval $(ssh-agent -s)
-          ssh-keygen -p -m PEM -f "$SSH_KEY_PATH"
-          ssh-add "$SSH_KEY_PATH"
-          ssh -v -tt -i "$SSH_KEY_PATH" ubuntu@3.79.135.33
+          ssh-add ~/.ssh/id_rsa
+          ssh -tt ubuntu@3.79.135.33
           pm2 list
