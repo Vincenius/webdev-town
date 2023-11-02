@@ -23,5 +23,5 @@ jobs:
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
       - name: test connection
         run: |
-          ssh ubuntu@3.79.135.33
+          ssh -i ~/.ssh/private.pem ubuntu@3.79.135.33
           pm2 list
