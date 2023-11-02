@@ -8,18 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Create SSH key
+      - name: Set up SSH agent
         run: |
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        shell: bash
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 3.79.135.33 >> ~/.ssh/known_hosts
         env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-      - name: test connection
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: SSH into the server and run a command
         run: |
-          eval $(ssh-agent -s)
-          ssh-add ~/.ssh/id_rsa
-          ssh -v -tt ubuntu@3.79.135.33
-          pm2 list
+          ssh -i ~/.ssh/id_rsa ubuntu@3.79.135.33 "echo Hello from the server!"
