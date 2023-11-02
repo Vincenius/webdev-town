@@ -7,17 +7,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
     steps:
-      - name: Create SSH key files
+      - name: Create SSH key
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.pem
-          chmod 400 ~/.ssh/private.pem
+          sudo chmod 400 ~/.ssh/private.pem
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          
-      - name: SSH into server and run commands
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+      - name: test connection
         run: |
-          ssh -i ~/.ssh/private.pem ubuntu@3.79.135.33 "pm2 list"
+          eval $(ssh-agent -s)
+          ssh -v -i /Users/vincent/.ssh/ec2-key.pem -tt ubuntu@3.79.135.33
+          pm2 list
