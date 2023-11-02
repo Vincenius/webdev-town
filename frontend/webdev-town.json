@@ -3,7 +3,7 @@
         {
             "name": "webdev-town",
             "script": "npm",
-            "args": "run start -p 8080",
+            "args": "run start",
             "env": {
                 "NODE_ENV": "production"
             }
