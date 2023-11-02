@@ -21,7 +21,5 @@ jobs:
       - name: test connection
         run: |
           eval $(ssh-agent -s)
-          cat ~/.ssh/private.pem
-          ssh-add ~/.ssh/private.pem
-          ssh -tt ubuntu@3.79.135.33
+          ssh -i /Users/vincent/.ssh/ec2-key.pem -tt ubuntu@3.79.135.33
           pm2 list
