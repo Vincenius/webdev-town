@@ -22,5 +22,5 @@ jobs:
         run: |
           eval $(ssh-agent -s)
           ssh-add ~/.ssh/private.pem
-          ssh ubuntu@3.79.135.33
+          ssh -tt ubuntu@3.79.135.33
           pm2 list
