@@ -20,6 +20,7 @@ jobs:
       - name: SSH into the server and run a command
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@3.79.135.33 << 'EOF'
+            export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v20.9.0/bin
             cd ~/node/webdev-town
             git pull
             cd ~/node/webdev-town/frontend
