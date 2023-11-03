@@ -20,9 +20,10 @@ jobs:
       - name: SSH into the server and run a command
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@3.79.135.33 << 'EOF'
-            cd ~/node/webdev-town/
+            cd ~/node/webdev-town
             git pull
-            cd ./frontend/
+            cd ~/node/webdev-town/frontend
+            yarn
             yarn build
             pm2 restart webdev-town
             echo "Deployment done!"
