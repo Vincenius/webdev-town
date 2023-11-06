@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: SSH into the server and run a command
         run: |
-          sshpass -p$SSH_PASSWORD -T ssh $SSH_USERNAME@217.72.202.55 << 'EOF'
+          sshpass -p$SSH_PASSWORD ssh -T $SSH_USERNAME@217.72.202.55 << 'EOF'
             export PATH="$PATH:/root/.nvm/versions/node/v20.9.0/bin"
             cd ~/node/webdev-town
             git pull
