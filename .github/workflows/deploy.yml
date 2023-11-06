@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: SSH into the server and run a command
         run: |
-          sshpass -p"$SSH_PASSWORD" ssh -T "$SSH_USERNAME"@217.72.202.55 << 'EOF'
+          ssh-keyscan 217.72.202.55 >> ~/.ssh/known_hosts
+          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -T ${{ secrets.SSH_USERNAME }}@217.72.202.55 << 'EOF'
             echo "Connected!!!"
             export PATH="$PATH:/root/.nvm/versions/node/v20.9.0/bin"
             cd ~/node/webdev-town
@@ -21,9 +22,6 @@ jobs:
             pm2 restart webdev-town
             echo "Deployment done!"
           EOF
-        env:
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
     # steps:
     #   - name: Set up SSH agent
     #     run: |
