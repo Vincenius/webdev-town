@@ -8,18 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up SSH agent
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan 3.79.135.33 >> ~/.ssh/known_hosts
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: SSH into the server and run a command
         run: |
-          ssh -i ~/.ssh/id_rsa ubuntu@3.79.135.33 << 'EOF'
+          sudo apt install sshpass
+          sshpass -p"$SSH_PASSWORD" ssh "$SSH_USERNAME"@217.72.202.55 << 'EOF'
             export PATH="$PATH:/home/ubuntu/.nvm/versions/node/v20.9.0/bin"
             cd ~/node/webdev-town
             git pull
@@ -29,4 +21,29 @@ jobs:
             pm2 restart webdev-town
             echo "Deployment done!"
           EOF
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+    # steps:
+    #   - name: Set up SSH agent
+    #     run: |
+    #       mkdir -p ~/.ssh
+    #       echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    #       chmod 600 ~/.ssh/id_rsa
+    #       ssh-keyscan 3.79.135.33 >> ~/.ssh/known_hosts
+    #     env:
+    #       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    #   - name: SSH into the server and run a command
+    #     run: |
+    #       ssh -i ~/.ssh/id_rsa ubuntu@3.79.135.33 << 'EOF'
+    #         export PATH="$PATH:/home/ubuntu/.nvm/versions/node/v20.9.0/bin"
+    #         cd ~/node/webdev-town
+    #         git pull
+    #         cd ~/node/webdev-town/frontend
+    #         yarn
+    #         yarn build
+    #         pm2 restart webdev-town
+    #         echo "Deployment done!"
+    #       EOF
 
