@@ -11,7 +11,7 @@ jobs:
       - name: SSH into the server and run a command
         run: |
           sshpass -p$SSH_PASSWORD -T ssh $SSH_USERNAME@217.72.202.55 << 'EOF'
-            export PATH="$PATH:/home/ubuntu/.nvm/versions/node/v20.9.0/bin"
+            export PATH="$PATH:/root/.nvm/versions/node/v20.9.0/bin"
             cd ~/node/webdev-town
             git pull
             cd ~/node/webdev-town/frontend
