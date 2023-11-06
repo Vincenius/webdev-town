@@ -10,8 +10,7 @@ jobs:
     steps:
       - name: SSH into the server and run a command
         run: |
-          ssh-keyscan 217.72.202.55 >> ~/.ssh/known_hosts
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -T ${{ secrets.SSH_USERNAME }}@217.72.202.55 << 'EOF'
+          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@217.72.202.55 << 'EOF'
             echo "Connected!!!"
             export PATH="$PATH:/root/.nvm/versions/node/v20.9.0/bin"
             cd ~/node/webdev-town
