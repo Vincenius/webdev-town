@@ -1,4 +1,4 @@
-name: Deploy to Amazon EC2
+name: Deploy to Server
 
 on:
   push:
@@ -10,8 +10,7 @@ jobs:
     steps:
       - name: SSH into the server and run a command
         run: |
-          sudo apt install sshpass
-          sshpass -p"$SSH_PASSWORD" ssh "$SSH_USERNAME"@217.72.202.55 << 'EOF'
+          sshpass -p$SSH_PASSWORD ssh $SSH_USERNAME@217.72.202.55 << 'EOF'
             export PATH="$PATH:/home/ubuntu/.nvm/versions/node/v20.9.0/bin"
             cd ~/node/webdev-town
             git pull
