@@ -35,7 +35,7 @@ _Enjoyed this newsletter? You can support me by:_
 
 💬 commenting and letting me know
 
-💸 booking a [sponsored post](https://webdev.town/sponsorship/)
+💸 donating via [Ko-Fi](https://ko-fi.com/webdev_town)
 
 
 Cheers,
