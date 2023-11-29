@@ -25,7 +25,7 @@ const Footer = () => {
     </div>
     <div className={style.links}>
       <Link href="/privacy">Privacy Policy</Link>
-      <Link href="/sponsorship">Sponsorship</Link>
+      <Link href="https://ko-fi.com/webdev_town">Donate</Link>
       <Link href="/about">About</Link>
     </div>
   </footer>)

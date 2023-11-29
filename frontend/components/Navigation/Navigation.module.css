@@ -50,7 +50,7 @@
   display: none;
 }
 
-.menuIcon .navicon {
+.menuIcon .navIcon {
   background: #fff;
   display: block;
   height: 2px;
@@ -59,8 +59,8 @@
   width: 18px;
 }
 
-.menuIcon .navicon:before,
-.menuIcon .navicon:after {
+.menuIcon .navIcon:before,
+.menuIcon .navIcon:after {
   background: #fff;
   content: '';
   display: block;
@@ -70,11 +70,11 @@
   width: 100%;
 }
 
-.menuIcon .navicon:before {
+.menuIcon .navIcon:before {
   top: 5px;
 }
 
-.menuIcon .navicon:after {
+.menuIcon .navIcon:after {
   top: -5px;
 }
 
@@ -87,20 +87,20 @@
   max-height: 240px;
 }
 
-.menuBtn:checked ~ .menuIcon .navicon {
+.menuBtn:checked ~ .menuIcon .navIcon {
   background: transparent;
 }
 
-.menuBtn:checked ~ .menuIcon .navicon:before {
+.menuBtn:checked ~ .menuIcon .navIcon:before {
   transform: rotate(-45deg);
 }
 
-.menuBtn:checked ~ .menuIcon .navicon:after {
+.menuBtn:checked ~ .menuIcon .navIcon:after {
   transform: rotate(45deg);
 }
 
-.menuBtn:checked ~ .menuIcon:not(.steps) .navicon:before,
-.menuBtn:checked ~ .menuIcon:not(.steps) .navicon:after {
+.menuBtn:checked ~ .menuIcon:not(.steps) .navIcon:before,
+.menuBtn:checked ~ .menuIcon:not(.steps) .navIcon:after {
   top: 0;
 }
 

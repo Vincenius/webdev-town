@@ -42,7 +42,7 @@ const About = () => {
         </p>
         <ul>
           <li><a href="https://vincentwill.com">vincentwill.com</a></li>
-          <li><a href="https://twitter.com/wweb_dev">Twitter</a></li>
+          <li><a href="https://bsky.app/profile/vincentwill.com">Bluesky</a></li>
           <li><a href="mailto:info@webdev.tow">info@webdev.town</a></li>
         </ul>
         <p>Looking forward to hearing from you,<br/>Vincent</p>
