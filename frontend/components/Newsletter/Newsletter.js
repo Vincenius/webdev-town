@@ -15,7 +15,7 @@ const Newsletter = () => {
     e.preventDefault()
     setLoading(true)
 
-    fetch('https://email.webdev.town/api/subscribers', {
+    fetch('https://email.webdev.town/api/subscribe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
