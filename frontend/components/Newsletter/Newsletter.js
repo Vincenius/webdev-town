@@ -20,7 +20,7 @@ const Newsletter = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ email, list: 'prod' })
     })
       .then(() => open())
       .finally(() => setLoading(false))
